@@ -1,0 +1,2106 @@
+[
+  {
+    "index": 1,
+    "translated": "Chức năng của northbound API trong kiến trúc mạng tách biệt tầng điều khiển (control) và tầng ứng dụng (application) là gì?"
+  },
+  {
+    "index": 2,
+    "translated": "A. Nó nâng cấp phần mềm và khôi phục tập tin.\nB. Nó dựa vào việc cung cấp và cấu hình toàn cục.\nC. Nó hỗ trợ xử lý phân tán cho cấu hình.\nD. Nó cung cấp đường dẫn giữa bộ điều khiển SDN và các ứng dụng mạng."
+  },
+  {
+    "index": 4,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 6,
+    "translated": "Bây giờ, đến lượt các quản trị viên mạng và các ứng dụng SDN muốn điều khiển bộ điều khiển! Vì vậy bộ điều khiển cần một giao diện hướng bắc (northbound interface - NBI) để giao tiếp với chúng ta. Các ứng dụng NBI bao gồm nhiều dịch vụ mạng khác nhau, bao gồm ảo hóa mạng (network virtualization), cung cấp mạng ảo động (dynamic virtual network provisioning), giám sát tường lửa (firewall monitoring), quản lý danh tính người dùng (user identity management) và kiểm soát chính sách truy cập (access policy control)."
+  },
+  {
+    "index": 10,
+    "translated": "Kéo và thả các lợi ích của kiến trúc không dây từ bên trái vào các loại kiến trúc tương ứng bên phải."
+  },
+  {
+    "index": 14,
+    "translated": "Split-MAC:\n+ Công việc được chia sẻ giữa access point và controller\n+ Các access point truyền beacon frame\n+ Sử dụng giao thức đường hầm CAPWAP (CAPWAP tunneling protocol)"
+  },
+  {
+    "index": 15,
+    "translated": "Autonomous:\n+ Phù hợp cho môi trường doanh nghiệp nhỏ\n+ Hỗ trợ cấu hình và quản lý theo từng thiết bị"
+  },
+  {
+    "index": 17,
+    "translated": "Một autonomous AP là thiết bị độc lập với cả phần cứng có dây và không dây để có thể kết nối (bridge) các máy khách không dây thuộc các SSID vào hạ tầng VLAN có dây. Mỗi autonomous AP phải được cấu hình với một địa chỉ IP quản lý để có thể truy cập từ xa bằng Telnet, SSH, hoặc giao diện web. Mỗi AP phải được quản lý và bảo trì riêng lẻ trừ khi bạn sử dụng nền tảng quản lý như Cisco DNA Center."
+  },
+  {
+    "index": 18,
+    "translated": "Sự phân chia công việc giữa WLC và LAP được gọi là kiến trúc split-MAC. LAP phải tương tác với các máy khách không dây ở mức thấp, được gọi là tầng điều khiển truy cập phương tiện (Media Access Control - MAC). Các chức năng này phải nằm trên phần cứng LAP, gần nhất với các máy khách. Các chức năng quản lý không phải là phần thiết yếu để xử lý frame mà là những thứ nên được quản trị tập trung. Do đó, các chức năng đó có thể được chuyển đến một nền tảng tập trung, cách xa AP."
+  },
+  {
+    "index": 19,
+    "translated": "Reference: https://www.ciscopress.com/articles/article.asp?p=2999384&seqNum=5"
+  },
+  {
+    "index": 21,
+    "translated": "Kéo và thả các thuật ngữ Ansible từ bên trái sang bên phải."
+  },
+  {
+    "index": 25,
+    "translated": "+ tập hợp các hành động để thực hiện trên thiết bị đích, được viết ở định dạng YAML: playbook\n+ thiết bị đã cài đặt Ansible dùng để quản lý các thiết bị đích: control node\n+ thiết bị mạng, không cài đặt Ansible, có thể thực thi các lệnh trên đó: managed node\n+ hành động cụ thể cần thực hiện trên một hoặc nhiều thiết bị đích: task\n+ đơn vị mã Python được thực thi: module\n+ tập tin Ansible xác định các thiết bị đích để thực thi lệnh và tác vụ: inventory"
+  },
+  {
+    "index": 27,
+    "translated": "Sau khi Ansible được cài đặt, nó tạo ra một số tập tin văn bản:"
+  },
+  {
+    "index": 28,
+    "translated": "+ Playbooks: Các tập tin này cung cấp các hành động và logic về những gì Ansible nên làm. Ansible playbook là các tập tin chứa các tác vụ (task) để cấu hình máy chủ. Ansible playbook được viết ở định dạng YAML. Bên trong Playbook, chúng ta có:\n++ Module (còn được gọi là \"task plugin\" hoặc \"library plugin\") là các đơn vị mã riêng biệt có thể được sử dụng từ dòng lệnh hoặc trong một tác vụ playbook. Ansible thực thi mỗi module, thường trên managed node từ xa, và thu thập các giá trị trả về.\n++ Task: Task là đơn vị công việc nhỏ nhất của Ansible. Chúng là một chuỗi các hành động trên máy chủ đích, sử dụng các module để cung cấp chức năng."
+  },
+  {
+    "index": 29,
+    "translated": "Một task định nghĩa một hành động cần được thực hiện, trong khi module thực thi hành động đó trên managed host."
+  },
+  {
+    "index": 30,
+    "translated": "+ Inventory: là tập tin chứa danh sách các máy chủ (thường là địa chỉ IP, cổng) mà bạn muốn cấu hình hoặc quản lý. Các máy chủ trong inventory có thể được chia thành các nhóm nhỏ hơn để dễ quản lý và cấu hình. Mỗi nhóm có thể chạy các tác vụ khác nhau. Ví dụ về tác vụ là ping tất cả các máy chủ trong nhóm [routers].\n…"
+  },
+  {
+    "index": 33,
+    "translated": "Control node là máy tính chạy Ansible. Managed node là bất kỳ thiết bị nào được quản lý bởi control node.\nReference: https://opensource.com/resources/what-ansible"
+  },
+  {
+    "index": 35,
+    "translated": "Mục đích của traffic shaping là gì?"
+  },
+  {
+    "index": 36,
+    "translated": "A. Nó cho phép nhận dạng luồng động.\nB. Nó cho phép định tuyến dựa trên chính sách (policy-based routing).\nC. Nó cung cấp dịch vụ nỗ lực tốt nhất (best-effort).\nD. Nó giới hạn việc sử dụng băng thông."
+  },
+  {
+    "index": 38,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 40,
+    "translated": "+ Shaping: giữ lại các gói tin dư thừa trong hàng đợi (queue) và sau đó lên lịch truyền phần dư thừa sau theo các khoảng thời gian. Khi lưu lượng đạt đến tốc độ tối đa đã cấu hình, các gói tin bổ sung được xếp hàng đợi thay vì bị loại bỏ để tiếp tục sau. Traffic shaping chỉ áp dụng trên các giao diện đầu ra (outbound) vì bộ đệm và xếp hàng chỉ xảy ra trên giao diện đầu ra. Shaping được cấu hình theo bit trên giây."
+  },
+  {
+    "index": 41,
+    "translated": "Dịch vụ Best Effort có nghĩa là dịch vụ trên mạng chia sẻ trong đó mạng không cung cấp bất kỳ đảm bảo nào rằng dữ liệu được gửi đến hoặc việc gửi đáp ứng bất kỳ chất lượng dịch vụ nào, có nghĩa là các dịch vụ nhận được tốc độ bit thay đổi không xác định, độ trễ và mất gói tin, tùy thuộc vào tải lưu lượng hiện tại -> Traffic shaping không loại bỏ gói tin nên nó không cung cấp dịch vụ best effort -> Đáp án C không đúng."
+  },
+  {
+    "index": 42,
+    "translated": "Lý do chính bạn sử dụng traffic shaping là để kiểm soát quyền truy cập vào băng thông khả dụng, để đảm bảo lưu lượng tuân thủ các chính sách đã thiết lập cho nó, và để điều tiết luồng lưu lượng nhằm tránh tắc nghẽn có thể xảy ra khi lưu lượng gửi vượt quá tốc độ truy cập của giao diện đích từ xa -> Đáp án D đúng."
+  },
+  {
+    "index": 44,
+    "translated": "Kéo và thả các đặc điểm của công nghệ quản lý thiết bị từ bên trái vào các loại triển khai tương ứng bên phải."
+  },
+  {
+    "index": 48,
+    "translated": "Cisco DNA Center\n+ điều phối cấu hình thiết bị nền\n+ hỗ trợ quản lý phần mềm tập trung\n+ hỗ trợ các API mở"
+  },
+  {
+    "index": 49,
+    "translated": "Traditional\n+ dựa vào quản lý theo từng thiết bị\n+ cung cấp sự linh hoạt cao hơn cho các cấu hình tùy chỉnh và không chuẩn\n+ sử dụng quản lý phần mềm riêng lẻ"
+  },
+  {
+    "index": 51,
+    "translated": "Loại cổng nào được sử dụng để kết nối với mạng có dây khi autonomous AP ánh xạ hai VLAN vào các WLAN của nó?"
+  },
+  {
+    "index": 52,
+    "translated": "A. LAG\nB. EtherChannel\nC. trunk\nD. access"
+  },
+  {
+    "index": 54,
+    "translated": "Answer: C"
+  },
+  {
+    "index": 56,
+    "translated": "Trong ví dụ này, chúng ta sẽ cấu hình switch trong triển khai Autonomous AP. Đầu tiên, chúng ta cần tạo VLAN 21, được gán cho người dùng Corporate, và VLAN 22, được gán cho người dùng Guest. Sau đó chúng ta sẽ cấu hình giao diện trunk giữa AP và switch để cho phép nhiều VLAN đi qua liên kết."
+  },
+  {
+    "index": 57,
+    "translated": "Reference: https://study-ccna.com/autonomous-ap-access-point-configuration/"
+  },
+  {
+    "index": 59,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 60,
+    "translated": "R1#show ip ospf interface g0/0/0"
+  },
+  {
+    "index": 61,
+    "translated": "GigabitEthernet0/0/0 is up, line protocol is up"
+  },
+  {
+    "index": 62,
+    "translated": "Internet address is 192.168.1.2/24, Area 0"
+  },
+  {
+    "index": 63,
+    "translated": "Process ID 1, Router ID 192.168.1.2, Network Type POINT-TO-POINT, Cost: 1"
+  },
+  {
+    "index": 64,
+    "translated": "Transmit Delay is 1 sec, State POINT-TO-POINT,"
+  },
+  {
+    "index": 65,
+    "translated": "Timer intervals configured, Hello 15, Dead 20, Wait 20, Retransmit 5"
+  },
+  {
+    "index": 66,
+    "translated": "Hello due in 00:00:08"
+  },
+  {
+    "index": 67,
+    "translated": "Index 1/1, flood queue length 0"
+  },
+  {
+    "index": 68,
+    "translated": "Next 0x0(0) /0x0(0)"
+  },
+  {
+    "index": 69,
+    "translated": "Last flood scan length is 1, maximum is 1"
+  },
+  {
+    "index": 70,
+    "translated": "Last flood scan time is 0 msec, maximum is 0 msec"
+  },
+  {
+    "index": 71,
+    "translated": "Suppress hello for 0 neighbor(s)"
+  },
+  {
+    "index": 73,
+    "translated": "R2#show ip ospf interface g0/0/0"
+  },
+  {
+    "index": 74,
+    "translated": "GigabitEthernet0/0/0 is up, line protocol is up"
+  },
+  {
+    "index": 75,
+    "translated": "Internet address is 192.168.1.1/24, Area 0"
+  },
+  {
+    "index": 76,
+    "translated": "Process ID 1, Router ID 10.1.1.1, Network Type POINT-TO-POINT, Cost: 1"
+  },
+  {
+    "index": 77,
+    "translated": "Transmit Delay is 1 sec, State POINT-TO-POINT,"
+  },
+  {
+    "index": 78,
+    "translated": "Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5"
+  },
+  {
+    "index": 79,
+    "translated": "Hello due in 00:00:11"
+  },
+  {
+    "index": 80,
+    "translated": "Index 1/1, flood queue length 0"
+  },
+  {
+    "index": 81,
+    "translated": "Next 0x0(0)/0x0(0)"
+  },
+  {
+    "index": 82,
+    "translated": "Last flood scan length is 1, maximum is 1"
+  },
+  {
+    "index": 83,
+    "translated": "Last flood scan time is 0 msec, maximum is 0 msec"
+  },
+  {
+    "index": 84,
+    "translated": "Suppress hello for 0 neighbor(s)"
+  },
+  {
+    "index": 85,
+    "translated": "Kỹ sư mạng đang cấu hình router R2 làm router thay thế trên mạng. Sau khi áp dụng cấu hình ban đầu, người ta xác định rằng R2 không hiển thị R1 là neighbor. Cấu hình nào phải được áp dụng cho R2 để hoàn thành cấu hình OSPF và cho phép nó thiết lập quan hệ neighbor với R1?"
+  },
+  {
+    "index": 87,
+    "translated": "R2(config)#interface g0/0/0\nR2(config-if)#ip ospf hello-interval 15\nR2(config-if)#ip ospf dead-interval 20"
+  },
+  {
+    "index": 89,
+    "translated": "R2(config)#router ospf 1\nR2(config-router)#router-id 192.168.1.2"
+  },
+  {
+    "index": 91,
+    "translated": "R2(config)#router ospf 1\nR2(config-router)#network 192.168.1.0255.255.255.0 area 2\nR2(config-router)#network 10.1.1.0 255.255.255.255 area 2"
+  },
+  {
+    "index": 93,
+    "translated": "R2(config)#interface g0/0/0\nR2(config-if)#ip ospf dead-interval 20"
+  },
+  {
+    "index": 94,
+    "translated": "A. Option A\nB. Option B\nC. Option C\nD. Option D"
+  },
+  {
+    "index": 96,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 98,
+    "translated": "Để trở thành OSPF neighbor, các giá trị sau phải khớp trên cả hai router:"
+  },
+  {
+    "index": 99,
+    "translated": "+ Area ID\n+ Authentication\n+ Hello and Dead Intervals\n+ Stub area Flag\n+ MTU Size"
+  },
+  {
+    "index": 101,
+    "translated": "Đặc điểm của mô hình mạng collapsed-core là gì?"
+  },
+  {
+    "index": 102,
+    "translated": "A. Nó cho phép tầng lõi (core) và tầng phân phối (distribution) hoạt động như một tầng kết hợp duy nhất.\nB. Nó cho phép tầng lõi và tầng truy cập kết nối với một thiết bị phân phối logic qua EtherChannel.\nC. Nó cho phép tất cả các máy trạm trong môi trường SOHO kết nối trên một switch duy nhất có truy cập internet.\nD. Nó cho phép các thiết bị không dây kết nối trực tiếp với tầng lõi, giúp truyền dữ liệu nhanh hơn."
+  },
+  {
+    "index": 104,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 106,
+    "translated": "Thiết kế phân cấp ba tầng tối đa hóa hiệu suất, khả dụng mạng và khả năng mở rộng thiết kế mạng. Hầu hết các campus doanh nghiệp nhỏ không phát triển đáng kể theo thời gian, và hầu hết các campus doanh nghiệp nhỏ đủ nhỏ để được phục vụ tốt bởi thiết kế phân cấp hai tầng, trong đó tầng lõi (core) và tầng phân phối (distribution) được gộp lại thành một tầng. Động lực chính cho thiết kế collapsed core là giảm chi phí mạng, trong khi vẫn giữ hầu hết các lợi ích của mô hình phân cấp ba tầng."
+  },
+  {
+    "index": 107,
+    "translated": "Reference: https://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Small_Enterprise_Design_Profile/SEDP/chap2.html"
+  },
+  {
+    "index": 109,
+    "translated": "Mục đích của việc cấu hình các mức syslog khác nhau cho các thiết bị khác nhau trên mạng là gì?"
+  },
+  {
+    "index": 110,
+    "translated": "A. để giới hạn tốc độ thông báo cho các mức nghiêm trọng khác nhau từ mỗi thiết bị\nB. để thiết lập mức nghiêm trọng (severity) của thông báo syslog từ mỗi thiết bị\nC. để xác định nguồn mà mỗi thông báo syslog bắt nguồn từ đó\nD. để kiểm soát số lượng thông báo syslog từ các thiết bị khác nhau được lưu trữ cục bộ"
+  },
+  {
+    "index": 112,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 114,
+    "translated": "Câu hỏi này hơi khó hiểu. Nhưng câu hỏi muốn hỏi về mức nghiêm trọng (severity level) của thông báo syslog. Level = severity level."
+  },
+  {
+    "index": 115,
+    "translated": "Để giới hạn tốc độ thông báo (rate-limit messages - giới hạn số lượng gói syslog gửi đến syslog server), chúng ta sử dụng lệnh \"logging rate-limit …\" nên đáp án A không phải là đáp án tốt nhất cho câu hỏi này (mặc dù nó không hoàn toàn sai)."
+  },
+  {
+    "index": 117,
+    "translated": "Giao diện nào cho phép giao tiếp giữa một chương trình trên controller và một chương trình trên các thiết bị mạng?"
+  },
+  {
+    "index": 118,
+    "translated": "A. northbound interface\nB. software virtual interface\nC. southbound interface\nD. tunnel interface"
+  },
+  {
+    "index": 120,
+    "translated": "Answer: C"
+  },
+  {
+    "index": 122,
+    "translated": "Chúng ta sử dụng Southbound API để giao tiếp giữa các Controller và các Phần tử Mạng (Network Element)."
+  },
+  {
+    "index": 125,
+    "translated": "Kéo và thả phương thức gọi REST API cho HTTP từ bên trái vào hành động tương ứng mà chúng thực hiện bên phải."
+  },
+  {
+    "index": 129,
+    "translated": "+ tạo tài nguyên trên server: POST\n+ đọc dữ liệu từ server: GET\n+ xóa tài nguyên khỏi server: DELETE\n+ cập nhật một mục trong cơ sở dữ liệu: PUT"
+  },
+  {
+    "index": 131,
+    "translated": "GET: lấy dữ liệu\nPOST: tạo dữ liệu\nPUT: cập nhật toàn bộ (thay thế) một bản ghi hiện có\nPATCH: cập nhật một phần của bản ghi hiện có\nDELETE: xóa bản ghi"
+  },
+  {
+    "index": 132,
+    "translated": "PUT tương tự POST ở chỗ nó có thể tạo tài nguyên, nhưng nó thực hiện điều đó khi có URL đã xác định, trong đó PUT thay thế toàn bộ tài nguyên nếu nó tồn tại hoặc tạo mới nếu nó không tồn tại."
+  },
+  {
+    "index": 133,
+    "translated": "Không giống PUT Request, PATCH thực hiện cập nhật một phần. Các trường cần được cập nhật bởi client, chỉ trường đó được cập nhật mà không sửa đổi các trường khác."
+  },
+  {
+    "index": 135,
+    "translated": "Mục đích chính của không gian địa chỉ riêng (private address space) là gì?"
+  },
+  {
+    "index": 136,
+    "translated": "A. bảo tồn không gian địa chỉ duy nhất toàn cầu\nB. đơn giản hóa việc đánh địa chỉ trong mạng\nC. giới hạn số lượng node có thể truy cập qua Internet\nD. giảm độ phức tạp mạng"
+  },
+  {
+    "index": 138,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 140,
+    "translated": "Lý do để cấu hình cổng trunk kết nối với cổng phân phối (distribution port) của WLC là gì?"
+  },
+  {
+    "index": 141,
+    "translated": "A. Loại bỏ dự phòng khi có lỗi liên kết trong đường dữ liệu.\nB. Cho phép nhiều VLAN được sử dụng trong đường dữ liệu.\nC. Cung cấp dự phòng nếu có lỗi liên kết cho quản lý ngoài băng (out-of-band).\nD. Cho phép nhiều VLAN cung cấp quản lý ngoài băng (out-of-band)."
+  },
+  {
+    "index": 143,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 145,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 147,
+    "translated": "Lưu lượng từ R1 đến mạng con 10.10.2.0/24 sử dụng 192.168.1.2 làm next hop. Một kỹ sư mạng muốn cập nhật cấu hình R1 sao cho lưu lượng có đích 10.10.2.1 đi qua router R3, và tất cả lưu lượng khác đến mạng con 10.10.2.0/24 đi qua R2. Lệnh nào phải được sử dụng?"
+  },
+  {
+    "index": 148,
+    "translated": "A. ip route 10.10.2.1 255.255.255.255 192.168.1.4 115\nB. ip route 10.10.2.0 255.255.255.0 192.168.1.4 100\nC. ip route 10.10.2.0 255.255.255.0 192.168.1.4 115\nD. ip route 10.10.2.1 255.255.255.255 192.168.1.4 100"
+  },
+  {
+    "index": 150,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 152,
+    "translated": "Mật mã (cipher) nào được hỗ trợ cho mã hóa không dây chỉ với chuẩn WPA2?"
+  },
+  {
+    "index": 155,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 157,
+    "translated": "Không giống WEP và WPA, WPA2 sử dụng chuẩn AES thay vì mật mã dòng (stream cipher) Rivest Cipher 4 (RC4)."
+  },
+  {
+    "index": 158,
+    "translated": "Chế độ WPA3-Enterprise sử dụng AES-256 ở chế độ GCM."
+  },
+  {
+    "index": 159,
+    "translated": "SHA là viết tắt của Secure Hash Algorithm trong khi AES là viết tắt của Advanced Encryption Standard. Vì vậy SHA là một bộ thuật toán băm (hashing algorithm). Nó không phải là mật mã (cipher) được sử dụng để mã hóa."
+  },
+  {
+    "index": 161,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 162,
+    "translated": "Entry #"
+  },
+  {
+    "index": 167,
+    "translated": "Mục nào là kết quả khớp tiền tố dài nhất (longest prefix match) cho địa chỉ IP host 192.168.10.5?"
+  },
+  {
+    "index": 170,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 172,
+    "translated": "Hai tính năng nào được giới thiệu trong SNMPv2 cung cấp khả năng lấy lượng lớn dữ liệu trong một yêu cầu? (Chọn hai)"
+  },
+  {
+    "index": 173,
+    "translated": "A. Get\nB. GetNext\nC. Set\nD. GetBulk\nE. Inform"
+  },
+  {
+    "index": 175,
+    "translated": "Answer: D E"
+  },
+  {
+    "index": 177,
+    "translated": "Hai thông báo bổ sung được thêm vào trong SNMPv2 (so với SNMPv1)"
+  },
+  {
+    "index": 178,
+    "translated": "GetBulkRequest - Thông báo GetBulkRequest cho phép SNMP manager truy cập các khối dữ liệu lớn. GetBulkRequest cho phép agent phản hồi với nhiều thông tin nhất có thể vừa trong PDU phản hồi. Các agent không thể cung cấp giá trị cho tất cả các biến trong danh sách sẽ gửi thông tin một phần."
+  },
+  {
+    "index": 179,
+    "translated": "InformRequest - Thông báo InformRequest cho phép các trạm NMS chia sẻ thông tin trap. (Trap được phát hành bởi các SNMP agent khi có thay đổi thiết bị.) Thông báo InformRequest thường được sử dụng giữa các trạm NMS, không phải giữa các trạm NMS và agent."
+  },
+  {
+    "index": 181,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 182,
+    "translated": "router# show ip route"
+  },
+  {
+    "index": 187,
+    "translated": "C 172.18.32.32/32 is directly connected, Loopback0"
+  },
+  {
+    "index": 188,
+    "translated": "C 172.18.32.36/30 directly connected, GigabitEthernet0/0"
+  },
+  {
+    "index": 189,
+    "translated": "L 172.18.32.37/32 is directly connected, GigabitEthernet0/0"
+  },
+  {
+    "index": 190,
+    "translated": "Một gói tin có nguồn từ 172.18.33.2 được gửi đến đích 172.18.32.38. Router chuyển tiếp gói tin đến đâu?"
+  },
+  {
+    "index": 193,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 195,
+    "translated": "Mục nhập tốt nhất cho đích 172.18.32.38 là \"C 172.18.32.36/30 …, GigabitEthernet0/0\" nên router sẽ chuyển tiếp gói tin đến giao diện Gi0/0."
+  },
+  {
+    "index": 197,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 199,
+    "translated": "Bảng định tuyến của Router1 có nhiều phương thức để đến 10.10.10.0/24 như hình. Administrative Distance mặc định được sử dụng. Kéo và thả các điều kiện mạng từ bên trái vào các phương thức định tuyến mà Router1 sử dụng bên phải."
+  },
+  {
+    "index": 203,
+    "translated": "eBGP:\n+ Static route và EIGRP bị down\n+ Static route và OSPF bị down"
+  },
+  {
+    "index": 204,
+    "translated": "EIGRP:\n+ Static route và eBGP bị down"
+  },
+  {
+    "index": 205,
+    "translated": "Static:\n+ Tất cả giao thức đều hoạt động\n+ OSPF và eBGP bị down"
+  },
+  {
+    "index": 207,
+    "translated": "Administrative Distance (AD) của các giao thức định tuyến phổ biến được hiển thị bên dưới. Bạn nên học thuộc lòng:"
+  },
+  {
+    "index": 209,
+    "translated": "Lưu ý: AD của eBGP là 20 và iBGP là 200."
+  },
+  {
+    "index": 210,
+    "translated": "AD càng nhỏ thì càng tốt. Router sẽ chọn giao thức định tuyến có AD nhỏ nhất."
+  },
+  {
+    "index": 211,
+    "translated": "Trong trường hợp này router sẽ chọn theo thứ tự: Static (1) -> eBGP (20) -> EIGRP (90) -> OSPF (110) -> iBGP (200)."
+  },
+  {
+    "index": 213,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 215,
+    "translated": "Một PC mới được cấu hình không thể kết nối internet bằng TCP port 80 đến www.cisco.com. Cài đặt nào phải được sửa đổi để kết nối hoạt động?"
+  },
+  {
+    "index": 216,
+    "translated": "A. Subnet Mask\nB. DNS Servers\nC. Default Gateway\nD. DHCP Server"
+  },
+  {
+    "index": 218,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 220,
+    "translated": "Chúng ta thấy PC này đã được gán địa chỉ IP 10.2.2.2, Default Gateway 10.2.2.1, DNS Server 8.8.8.8 nhưng subnet mask của nó là 255.255.255.192 (hoặc /26) khác với subnet mask của default gateway nên đây là vấn đề."
+  },
+  {
+    "index": 222,
+    "translated": "Switch làm gì khi nhận được một frame có địa chỉ MAC đích không có trong bảng địa chỉ MAC?"
+  },
+  {
+    "index": 223,
+    "translated": "A. Nó flood frame không thay đổi đến tất cả các cổng còn lại trong VLAN đến.\nB. Nó thêm vào bảng một mục tĩnh cho MAC và tắt cổng.\nC. Nó cập nhật bảng CAM với địa chỉ MAC đích của frame.\nD. Nó thay đổi checksum của frame thành giá trị chỉ ra frame không hợp lệ."
+  },
+  {
+    "index": 225,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 227,
+    "translated": "Cải tiến nào được triển khai trong WPA3?"
+  },
+  {
+    "index": 228,
+    "translated": "A. áp dụng xác thực 802.1x\nB. sử dụng TKIP\nC. sử dụng PKI để xác định access point\nD. bảo vệ chống lại tấn công brute force"
+  },
+  {
+    "index": 230,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 232,
+    "translated": "Một cải tiến bảo mật khác được thực hiện trong WPA3 giảm khả năng tấn công bẻ mật khẩu (password cracking) như tấn công WPA2 KRACK. WPA2 dễ bị tấn công brute force và tấn công dựa trên từ điển (dictionary-based). Đó là vì bảo mật phụ thuộc vào việc nhà cung cấp AP thiết lập mật khẩu an toàn và nhiều cơ sở không làm vậy. Với WPA3, giao thức trao đổi Pre-Shared Key (PSK) được thay thế bằng Simultaneous Authentication of Equals (SAE) hay Dragonfly Key Exchange, giúp cải thiện bảo mật của việc trao đổi khóa ban đầu và cung cấp bảo vệ tốt hơn chống lại tấn công dựa trên từ điển ngoại tuyến."
+  },
+  {
+    "index": 233,
+    "translated": "Reference: https://www.webtitan.com/blog/wpa3-wifi-security-enhancements-will-not-block-all-threats/"
+  },
+  {
+    "index": 235,
+    "translated": "Loại địa chỉ nào được chia sẻ bởi các router trong triển khai HSRP và được các host trên mạng con sử dụng làm địa chỉ default gateway?"
+  },
+  {
+    "index": 236,
+    "translated": "A. địa chỉ multicast\nB. địa chỉ IP loopback\nC. địa chỉ IP ảo (virtual IP address)\nD. địa chỉ broadcast"
+  },
+  {
+    "index": 238,
+    "translated": "Answer: C"
+  },
+  {
+    "index": 240,
+    "translated": "Hai lý do nào khiến switch xảy ra hiện tượng frame flooding? (Chọn hai)"
+  },
+  {
+    "index": 241,
+    "translated": "A. Cáp patch bị lỗi được kết nối vào cổng switch\nB. Thay đổi topology đang xảy ra trong spanning-tree\nC. Mục MAC table hết hạn gây ra cập nhật quá mức\nD. Port-security được cấu hình toàn cục\nE. Bảng chuyển tiếp (forwarding table) bị tràn"
+  },
+  {
+    "index": 243,
+    "translated": "Answer: B E"
+  },
+  {
+    "index": 245,
+    "translated": "Tuy nhiên, các sự kiện khác trong mạng có thể khiến bảng địa chỉ MAC của switch bị xóa thường xuyên hơn thời gian aging đã cấu hình. Một sự kiện như vậy là do thay đổi topology spanning-tree trong mạng."
+  },
+  {
+    "index": 246,
+    "translated": "Thay đổi topology giảm thời gian aging của bảng địa chỉ MAC từ thời gian mặc định 300 giây xuống 15 giây trong trường hợp 802.1D Spanning Tree Protocol (STP) để làm mới các mục bảng địa chỉ MAC cũ -> Đáp án B đúng."
+  },
+  {
+    "index": 247,
+    "translated": "Nếu bảng chuyển tiếp Layer 2 hoặc bảng địa chỉ MAC đầy và không thể lưu thêm địa chỉ MAC nào nữa, nó chuyển sang chế độ fail-open và bắt đầu hoạt động như một Hub mạng. Frame được flood đến tất cả các cổng, tương tự như kiểu giao tiếp broadcast. Tấn công MAC flooding sử dụng tính năng này của switch để đánh cắp thông tin -> Đáp án E đúng."
+  },
+  {
+    "index": 249,
+    "translated": "Tại sao TCP được ưu tiên hơn UDP cho ứng dụng yêu cầu kiểm tra lỗi mở rộng, chẳng hạn như HTTPS?"
+  },
+  {
+    "index": 250,
+    "translated": "A. UDP hoạt động không có xác nhận (acknowledgment), và TCP gửi xác nhận cho mỗi gói tin nhận được.\nB. UDP đảm bảo tin cậy việc giao tất cả gói tin, và TCP loại bỏ gói tin khi tải nặng.\nC. UDP sử dụng cơ chế kiểm soát luồng (flow control) để giao gói tin, và TCP sử dụng kiểm soát tắc nghẽn (congestion control) để giao gói tin hiệu quả.\nD. UDP sử dụng dữ liệu tuần tự để gói tin đến theo thứ tự, và TCP cung cấp khả năng nhận gói tin theo thứ tự ngẫu nhiên."
+  },
+  {
+    "index": 252,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 254,
+    "translated": "Lưu ý: Cơ chế kiểm soát luồng (flow control) cho phép bên gửi biết tốc độ tối đa mà dữ liệu có thể được gửi đến thiết bị nhận. Một trong những cơ chế kiểm soát luồng phổ biến trong TCP là giao thức cửa sổ trượt (sliding window protocol) -> Đáp án C không đúng."
+  },
+  {
+    "index": 255,
+    "translated": "Reference: https://www.baeldung.com/cs/tcp-flow-control-vs-congestion-control"
+  },
+  {
+    "index": 257,
+    "translated": "Để cải thiện bảo mật doanh nghiệp, một tổ chức đang lên kế hoạch triển khai xác thực bằng thẻ (badge authentication) để giới hạn quyền truy cập vào trung tâm dữ liệu (data center). Yếu tố nào của chương trình bảo mật đang được triển khai?"
+  },
+  {
+    "index": 258,
+    "translated": "A. đào tạo người dùng\nB. nhận thức người dùng\nC. xác minh lỗ hổng\nD. kiểm soát truy cập vật lý (physical access control)"
+  },
+  {
+    "index": 260,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 262,
+    "translated": "Kiểm soát truy cập vật lý (Physical access control): Các vị trí cơ sở hạ tầng, như phòng mạng (network closet) và trung tâm dữ liệu (data center), phải được khóa an toàn. Truy cập bằng thẻ (badge access) đến các vị trí nhạy cảm là giải pháp có thể mở rộng, cung cấp dấu vết kiểm toán (audit trail) về danh tính và dấu thời gian khi quyền truy cập được cấp. Quản trị viên có thể kiểm soát truy cập ở mức chi tiết và nhanh chóng thu hồi quyền truy cập khi nhân viên bị sa thải."
+  },
+  {
+    "index": 264,
+    "translated": "Kéo và thả các câu phát biểu về dịch vụ AAA từ bên trái vào các dịch vụ AAA tương ứng bên phải."
+  },
+  {
+    "index": 268,
+    "translated": "Accounting\n+ Nó ghi lại thời lượng của mỗi kết nối\n+ Nó hỗ trợ Báo cáo Truy cập Người dùng (User Access Reporting)"
+  },
+  {
+    "index": 269,
+    "translated": "Authorization\n+ Nó cấp quyền truy cập vào tài sản mạng, như FTP server\n+ Nó hạn chế các lệnh CLI mà người dùng có thể thực hiện"
+  },
+  {
+    "index": 271,
+    "translated": "Khối địa chỉ 192.168.32.0/24 phải được chia mạng con (subnet) thành các mạng nhỏ hơn. Kỹ sư phải đáp ứng các yêu cầu sau:\n* Tạo 8 mạng con mới\n* Mỗi mạng con phải chứa 30 host\n* Interface VLAN 10 phải sử dụng IP khả dụng cuối cùng trong mạng con mới đầu tiên\n* Sử dụng giao diện Layer 3"
+  },
+  {
+    "index": 272,
+    "translated": "Cấu hình nào phải được áp dụng cho giao diện?"
+  },
+  {
+    "index": 273,
+    "translated": "A. no switchport mode access\nip address 192.168.32.62 255.255.255.240"
+  },
+  {
+    "index": 274,
+    "translated": "B. switchport\nip address 192.168.32.65 255.255.255.240"
+  },
+  {
+    "index": 275,
+    "translated": "C. no switchport mode trunk\nip address 192.168.32.97 255.255.255.224"
+  },
+  {
+    "index": 276,
+    "translated": "D. no switchport\nip address 192.168.32.30 255.255.255.224"
+  },
+  {
+    "index": 278,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 280,
+    "translated": "8 mạng con mới -> 8 = 2³. Do đó subnet mask là 255.255.255.224 (224 ở dạng thập phân = 1110 0000 ở dạng nhị phân) và mỗi mạng con mới gồm 2⁵ – 2 = 30 host."
+  },
+  {
+    "index": 281,
+    "translated": "\"Interface VLAN 10 phải sử dụng IP khả dụng cuối cùng trong mạng con mới đầu tiên\" -> Mạng con mới đầu tiên là 192.168.32.0/27 (bước nhảy: 32) nên nó nằm trong khoảng từ 192.168.32.0 đến 192.168.32.31) nên IP khả dụng cuối cùng là 192.168.32.30. Do đó chúng ta phải gán địa chỉ IP 192.168.32.30/27 cho interface VLAN 10."
+  },
+  {
+    "index": 283,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 285,
+    "translated": "Có bao nhiêu đối tượng JSON (JSON object) được hiển thị?"
+  },
+  {
+    "index": 288,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 290,
+    "translated": "Một đối tượng JSON (JSON object) chứa không, một hoặc nhiều cặp khóa-giá trị (key-value pair), còn được gọi là thuộc tính (property). Đối tượng được bao quanh bởi dấu ngoặc nhọn {} nên chỉ có một đối tượng trong câu hỏi này."
+  },
+  {
+    "index": 292,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 294,
+    "translated": "PC1 thường xuyên gửi 1800 Mbps lưu lượng đến server. Một kỹ sư mạng cần cấu hình EtherChannel để vô hiệu hóa Port Channel 1 giữa SW1 và SW2 khi các cổng Ge0/0 và Ge0/1 trên SW2 bị down. Cấu hình nào kỹ sư phải áp dụng cho switch?"
+  },
+  {
+    "index": 295,
+    "translated": "A. SW2#configure terminal\nSW2(config)# interface port-channel 1\nSW2(config-if)#lacp port-priority 32000"
+  },
+  {
+    "index": 296,
+    "translated": "B. SW2#configure terminal\nSW2(config)#interface port-channel 1\nSW2(config-if)#lacp max-bundle 2"
+  },
+  {
+    "index": 297,
+    "translated": "C. SW2#configure terminal\nSW2(config)#lacp system-priority 32000"
+  },
+  {
+    "index": 298,
+    "translated": "D. SW2#configure terminal\nSW2(config)#interface port-channel 1\nSW2(config-if)#port-channel min-links 2"
+  },
+  {
+    "index": 300,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 302,
+    "translated": "Lệnh port-channel min-links chỉ định số lượng giao diện tối thiểu mà LAG ở chế độ cấu hình yêu cầu phải hoạt động. Nếu có ít cổng hơn số được chỉ định bởi lệnh này, giao diện port channel sẽ không hoạt động."
+  },
+  {
+    "index": 304,
+    "translated": "Dải địa chỉ IPv6 nào phù hợp cho địa chỉ anycast cho các dịch vụ phân tán như DHCP hoặc DNS?"
+  },
+  {
+    "index": 307,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 309,
+    "translated": "Dải FF00::/8 được sử dụng cho IPv6 multicast -> Octet đầu tiên là FF (1111 1111) -> Đáp án A không đúng."
+  },
+  {
+    "index": 310,
+    "translated": "FE80::/10 là địa chỉ link-local -> Đáp án D không đúng."
+  },
+  {
+    "index": 311,
+    "translated": "Tiền tố 2002::/16 được sử dụng cho 6to4, yêu cầu 32 bit tiếp theo (sau tiền tố 16 bit) phải là địa chỉ IPv4 unicast toàn cục -> Đáp án C không đúng."
+  },
+  {
+    "index": 312,
+    "translated": "Lưu ý: Địa chỉ anycast về mặt cú pháp không thể phân biệt được với địa chỉ unicast, vì địa chỉ anycast được phân bổ từ không gian địa chỉ unicast. Gán một địa chỉ unicast cho nhiều giao diện biến địa chỉ unicast thành địa chỉ anycast. Các node được gán địa chỉ anycast phải được cấu hình rõ ràng để nhận biết rằng địa chỉ đó là địa chỉ anycast."
+  },
+  {
+    "index": 313,
+    "translated": "Reference: https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipv6_basic/configuration/xe-3se/5700/ip6-anycast-add-xe.html"
+  },
+  {
+    "index": 315,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 316,
+    "translated": "R19#show int fa0/0"
+  },
+  {
+    "index": 317,
+    "translated": "FastEthernet0/0 is up, line protocol is up"
+  },
+  {
+    "index": 318,
+    "translated": "Hardware is DEC21140, address is ca02.7788.0000 (bia ca02.7788.0000)"
+  },
+  {
+    "index": 319,
+    "translated": "Description: SALES_SUBNET"
+  },
+  {
+    "index": 320,
+    "translated": "Internet address is 10.32.102.2/30"
+  },
+  {
+    "index": 321,
+    "translated": "MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec,"
+  },
+  {
+    "index": 322,
+    "translated": "reliability 255/255, txload 1/255, rxload 1/255"
+  },
+  {
+    "index": 323,
+    "translated": "Encapsulation ARPA, loopback not set"
+  },
+  {
+    "index": 324,
+    "translated": "Keepalive set (60 sec)"
+  },
+  {
+    "index": 325,
+    "translated": "Full-duplex, 100Mb/s, 100BaseTX/FX"
+  },
+  {
+    "index": 326,
+    "translated": "ARP type: ARPA, ARP Timeout 04:00:00"
+  },
+  {
+    "index": 327,
+    "translated": "Last input 00:00:01, output 00:00:00, output hang never"
+  },
+  {
+    "index": 328,
+    "translated": "Last clearing of \"show interface\" counters never"
+  },
+  {
+    "index": 329,
+    "translated": "Input queue: 0/300/0/0 (size/max/drops/flushes); Total output drops:"
+  },
+  {
+    "index": 331,
+    "translated": "Queueing strategy: fifo"
+  },
+  {
+    "index": 332,
+    "translated": "Output queue: 0/300 (size/max)"
+  },
+  {
+    "index": 333,
+    "translated": "30 second input rate 0 bits/sec, 0 packets/sec"
+  },
+  {
+    "index": 334,
+    "translated": "30 second output rate 0 bits/sec, 0 packets/sec"
+  },
+  {
+    "index": 335,
+    "translated": "73310 packets input, 7101162 bytes"
+  },
+  {
+    "index": 336,
+    "translated": "Received 73115 broadcasts (0 IP multicasts)"
+  },
+  {
+    "index": 337,
+    "translated": "0 runts, 0 giants, 0 throttles"
+  },
+  {
+    "index": 338,
+    "translated": "0 input errors, 4 CRC, 0 frame, 0 overrun, 0 ignored"
+  },
+  {
+    "index": 339,
+    "translated": "0 watchdog"
+  },
+  {
+    "index": 340,
+    "translated": "0 input packets with dribble condition detected"
+  },
+  {
+    "index": 341,
+    "translated": "3927513096455 packets output, 14404034810952 bytes, 0 underruns"
+  },
+  {
+    "index": 342,
+    "translated": "0 output errors, 11 collisions, 0 interface resets"
+  },
+  {
+    "index": 343,
+    "translated": "0 unknown protocol drops"
+  },
+  {
+    "index": 344,
+    "translated": "0 babbles, 0 late collision, 0 deferred"
+  },
+  {
+    "index": 345,
+    "translated": "0 lost carrier, 0 no carrier"
+  },
+  {
+    "index": 346,
+    "translated": "0 output buffer failures, 0 output buffers swapped out"
+  },
+  {
+    "index": 347,
+    "translated": "Nguyên nhân gây hiệu suất kém trên router R19 là gì?"
+  },
+  {
+    "index": 348,
+    "translated": "A. collision quá nhiều\nB. không khớp tốc độ và duplex\nC. quá tải cổng (port oversubscription)\nD. lỗi CRC quá nhiều"
+  },
+  {
+    "index": 350,
+    "translated": "Answer: C"
+  },
+  {
+    "index": 352,
+    "translated": "Chúng ta thấy \"Total output drops: 135298429\" rất cao."
+  },
+  {
+    "index": 353,
+    "translated": "Thông thường, output drops có thể xảy ra nếu QoS được cấu hình và không cung cấp đủ băng thông cho một lớp gói tin nhất định. Nó cũng xảy ra khi phần cứng gặp tình trạng quá tải (oversubscription)."
+  },
+  {
+    "index": 354,
+    "translated": "Reference: https://www.cisco.com/c/en/us/support/docs/switches/catalyst-6500-series-switches/12027-53.html#anc75"
+  },
+  {
+    "index": 355,
+    "translated": "Lưu ý: Total output drops: Số lượng gói tin bị loại bỏ vì hàng đợi đầu ra đã đầy. Nguyên nhân phổ biến có thể là lưu lượng từ liên kết băng thông cao được chuyển sang liên kết băng thông thấp hơn hoặc lưu lượng từ nhiều liên kết đầu vào được chuyển sang một liên kết đầu ra duy nhất."
+  },
+  {
+    "index": 357,
+    "translated": "Một kỹ sư đang cấu hình cổng switch kết nối với điện thoại VoIP. Lệnh nào kỹ sư phải cấu hình để bật port security với địa chỉ MAC được gán thủ công là abcd.abcd.abcd trên voice VLAN 4?"
+  },
+  {
+    "index": 358,
+    "translated": "A. switchport port-security mac-address abcd.abcd.abcd\nB. switchport port-security mac-address abcd.abcd.abcd vlan 4\nC. switchport port-security mac-address sticky abcd.abcd.abcd vlan 4\nD. switchport port-security mac-address abcd.abcd.abcd vlan voice"
+  },
+  {
+    "index": 360,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 362,
+    "translated": "Chúng tôi đã thử nghiệm cấu hình port-security dưới Web-IOU với IOSv15.2 nhưng không có từ khóa \"vlan voice\":"
+  },
+  {
+    "index": 364,
+    "translated": "Nhưng trong liên kết Cisco này, chúng ta có thể tìm thấy lệnh như vậy:"
+  },
+  {
+    "index": 365,
+    "translated": "Device(config-if)# switchport port-security mac-address 0000.0000.0004 vlan voice"
+  },
+  {
+    "index": 366,
+    "translated": "Vì vậy chúng tôi tin rằng đáp án D là lựa chọn tốt nhất."
+  },
+  {
+    "index": 368,
+    "translated": "Kéo và thả các lệnh DNS từ bên trái vào tác dụng tương ứng của chúng bên phải."
+  },
+  {
+    "index": 372,
+    "translated": "+ cho phép dịch tên máy chủ sang địa chỉ IP: ip domain-lookup\n+ thêm một mục vào bảng host: ip host switch_1 192.168.0.1\n+ hiển thị thông tin ánh xạ địa chỉ: show hosts\n+ chỉ định địa chỉ IP của DNS server: ip name-server\n+ hoàn thành FQDN của DNS server: ip domain-name"
+  },
+  {
+    "index": 374,
+    "translated": "Mã hóa bảo vệ mạng không dây như thế nào?"
+  },
+  {
+    "index": 375,
+    "translated": "A. thông qua kiểm tra tính toàn vẹn để xác định tấn công giả mạo không dây trong frame\nB. thông qua các mật mã cụ thể để phát hiện và ngăn chặn tấn công zero-day trên mạng\nC. thông qua thuật toán thay đổi dữ liệu không dây sao cho chỉ access point và client hiểu được\nD. thông qua chính sách ngăn người dùng trái phép giao tiếp trên mạng không dây"
+  },
+  {
+    "index": 377,
+    "translated": "Answer: C"
+  },
+  {
+    "index": 379,
+    "translated": "Thiết bị nào phân chia mạng thành các vùng riêng biệt có chính sách bảo mật riêng?"
+  },
+  {
+    "index": 380,
+    "translated": "A. IPS\nB. firewall\nC. access point\nD. switch"
+  },
+  {
+    "index": 382,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 384,
+    "translated": "Đặc điểm kỹ thuật của SSID là gì?"
+  },
+  {
+    "index": 385,
+    "translated": "A. Chúng là tính năng bảo mật độc quyền của Cisco.\nB. Chúng phải bao gồm một số và một chữ cái.\nC. Chúng xác định VLAN trên switch.\nD. Chúng phân biệt chữ hoa chữ thường (case sensitive)."
+  },
+  {
+    "index": 387,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 389,
+    "translated": "SSID được giới hạn tối đa 32 byte. Khi được biểu diễn ở dạng ASCII, các ký tự của SSID phân biệt chữ hoa chữ thường. Điều này có nghĩa là \"9tut\" là một mạng khác với \"9TUT\"."
+  },
+  {
+    "index": 391,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 393,
+    "translated": "Một kỹ sư đang cấu hình switch Cisco mới NewSW để thay thế SW2. Các chi tiết đã được cung cấp:\n* Switch SW1 và SW2 là thiết bị bên thứ ba không hỗ trợ cổng trunk\n* Các kết nối hiện tại phải được duy trì giữa PC1, PC2 và PC3\n* Cho phép switch chuyển lưu lượng từ VLAN 10 trong tương lai. Cấu hình nào phải được áp dụng?"
+  },
+  {
+    "index": 395,
+    "translated": "NewSW(config)#interface f0/0\nNewSW(config-if)#switchport mode trunk\nNewSW(config-if)#switchport trunk allowed vlan 2,10\nNewSW(config-if)#switchport trunk native vlan 2"
+  },
+  {
+    "index": 397,
+    "translated": "NewSW(config)#interface f0/0\nNewSW(config-if)#switchport mode trunk\nNewSW(config-if)#switchport trunk allowed vlan 10\nNewSW(config-if)#switchport trunk native vlan 10"
+  },
+  {
+    "index": 399,
+    "translated": "NewSW(config)#interface f0/0\nNewSW(config-if)#switchport mode access\nNewSW(config-if)#switchport trunk allowed vlan 2,10\nNewSW(config-if)#switchport trunk native vlan 10"
+  },
+  {
+    "index": 401,
+    "translated": "NewSW(config)#interface f0/0\nNewSW(config-if)#switchport mode access\nNewSW(config-if)#switchport trunk allowed vlan 2,10\nNewSW(config-if)#switchport trunk native vlan 2"
+  },
+  {
+    "index": 402,
+    "translated": "A. Option A\nB. Option B\nC. Option C\nD. Option D"
+  },
+  {
+    "index": 404,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 406,
+    "translated": "Chúng ta có thể cấu hình trunk trên NewSW và đặt native VLAN là access VLAN 2 của SW1 để các frame không được gắn thẻ (untagged) nhận được từ SW1 sẽ được đặt vào VLAN 2."
+  },
+  {
+    "index": 408,
+    "translated": "Lý do để triển khai địa chỉ IPv4 riêng (private addressing) là gì?"
+  },
+  {
+    "index": 409,
+    "translated": "A. Giảm nguy cơ vi phạm bảo mật mạng\nB. Tuân thủ quy định PCI\nC. Tuân thủ luật pháp địa phương\nD. Giảm kích thước bảng chuyển tiếp (forwarding table) trên router mạng"
+  },
+  {
+    "index": 411,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 413,
+    "translated": "Sự thật nào liên quan đến FTP?"
+  },
+  {
+    "index": 414,
+    "translated": "A. Nó sử dụng số khối (block number) để xác định và giảm thiểu lỗi truyền dữ liệu\nB. Nó luôn hoạt động mà không cần xác thực người dùng\nC. Nó dựa vào cổng UDP 69 nổi tiếng.\nD. Nó sử dụng hai kết nối riêng biệt cho lưu lượng điều khiển (control) và dữ liệu (data)"
+  },
+  {
+    "index": 416,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 418,
+    "translated": "FTP giao tiếp sử dụng hai kết nối TCP. Lưu lượng điều khiển được trao đổi qua TCP/21, và truyền dữ liệu được thực hiện qua TCP/20."
+  },
+  {
+    "index": 420,
+    "translated": "Hai giao thức nào được quản trị viên sử dụng để xác thực và cấu hình trên access point? (Chọn hai)"
+  },
+  {
+    "index": 421,
+    "translated": "A. Kerberos\nB. 802.1Q\nC. 802.1x\nD. TACACS+\nE. RADIUS"
+  },
+  {
+    "index": 423,
+    "translated": "Answer: C E"
+  },
+  {
+    "index": 425,
+    "translated": "Bạn có thể cấu hình xác thực 802.1X giữa lightweight access point và switch Cisco."
+  },
+  {
+    "index": 426,
+    "translated": "Reference: https://www.cisco.com/c/en/us/td/docs/wireless/controller/7-6/configuration-guide/b_cg76/b_cg76_chapter_01101000.pdf"
+  },
+  {
+    "index": 428,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 429,
+    "translated": "CPE1# show protocols e0/1"
+  },
+  {
+    "index": 430,
+    "translated": "Ethernet0/1 is up, line protocol is up"
+  },
+  {
+    "index": 431,
+    "translated": "Internet address is 10.0.12.2/24"
+  },
+  {
+    "index": 433,
+    "translated": "CPE1#show ip access-list LAN"
+  },
+  {
+    "index": 434,
+    "translated": "Standard IP access list LAN"
+  },
+  {
+    "index": 435,
+    "translated": "10 permit 10.0.12.0, wildcard bits 0.0.0.255"
+  },
+  {
+    "index": 437,
+    "translated": "CPE1# show ip nat translations"
+  },
+  {
+    "index": 439,
+    "translated": "CPE1# show ip net statistics"
+  },
+  {
+    "index": 441,
+    "translated": "Total active translations: 0 (0 static, 0 dynamic, 0 extended)"
+  },
+  {
+    "index": 442,
+    "translated": "Peak translations: 0"
+  },
+  {
+    "index": 443,
+    "translated": "Outside interfaces:"
+  },
+  {
+    "index": 444,
+    "translated": "Inside interfaces:"
+  },
+  {
+    "index": 446,
+    "translated": "Hits: 0 Misses: 0"
+  },
+  {
+    "index": 447,
+    "translated": "CEF Translated packets: 0, CEF Funted packets: 0"
+  },
+  {
+    "index": 448,
+    "translated": "Expired translations: 0"
+  },
+  {
+    "index": 449,
+    "translated": "Dynamic mappings:"
+  },
+  {
+    "index": 450,
+    "translated": "-- Inside Source"
+  },
+  {
+    "index": 451,
+    "translated": "[Id: 1] access-list LAN pool NATPOOL refcount 0"
+  },
+  {
+    "index": 452,
+    "translated": "pool NATPOOL: netmask 255.255.255.0"
+  },
+  {
+    "index": 453,
+    "translated": "start 198.51.100.11 end 198.51.100.20"
+  },
+  {
+    "index": 454,
+    "translated": "type generic, total addresses 10, allocated 0 (0%), misses 0"
+  },
+  {
+    "index": 456,
+    "translated": "Total doors: 0"
+  },
+  {
+    "index": 457,
+    "translated": "Appl doors: 0"
+  },
+  {
+    "index": 458,
+    "translated": "Normal doors: 0"
+  },
+  {
+    "index": 459,
+    "translated": "Queued Packets: 0"
+  },
+  {
+    "index": 460,
+    "translated": "Bước tiếp theo để hoàn thành triển khai cho cấu hình NAT một phần được hiển thị là gì?"
+  },
+  {
+    "index": 461,
+    "translated": "A. Cấu hình lại các mục NAT tĩnh trùng lặp với NAT pool\nB. Cấu hình giao diện NAT outside\nC. Sửa đổi access list cho mạng nội bộ trên e0/1\nD. Áp dụng ACL vào cấu hình pool"
+  },
+  {
+    "index": 463,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 465,
+    "translated": "Chúng ta thấy dòng \"Outside interfaces: \" vẫn trống, có nghĩa là chúng ta chưa cấu hình giao diện outside."
+  },
+  {
+    "index": 467,
+    "translated": "Loại địa chỉ IPv4 nào giúp bảo tồn các lớp địa chỉ duy nhất toàn cầu?"
+  },
+  {
+    "index": 468,
+    "translated": "A. multicast\nB. private\nC. loopback\nD. public"
+  },
+  {
+    "index": 470,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 472,
+    "translated": "Kéo và thả các loại địa chỉ IPv6 từ bên trái vào mô tả tương ứng bên phải."
+  },
+  {
+    "index": 476,
+    "translated": "+ địa chỉ multicast chỉ được sử dụng cục bộ trong site: FF05::23:becf:22:1111\n+ địa chỉ được tạo tự động trên liên kết khi IPv6 được bật trên giao diện: FE80::abcf:ffff:12de:3992\n+ địa chỉ bị cấm định tuyến ra Internet: FD00:0000:0000:1a2d:a153:3992:a19d:ccca\n+ địa chỉ duy nhất và được dành riêng cho mục đích tài liệu: 2001:DB8::bced:1234:456d:aacc"
+  },
+  {
+    "index": 478,
+    "translated": "Dải FF00::/8 được sử dụng cho IPv6 multicast -> Octet đầu tiên là FF cho biết đây là địa chỉ multicast."
+  },
+  {
+    "index": 479,
+    "translated": "Địa chỉ được tạo tự động trên liên kết khi IPv6 được bật trên giao diện -> Địa chỉ link-local trong dải FE80::/10"
+  },
+  {
+    "index": 480,
+    "translated": "Địa chỉ bị cấm định tuyến ra Internet -> Địa chỉ site-local (hay Unique local address). Chúng tương tự các lớp địa chỉ private của IPv4. Chúng bắt đầu bằng FC00::/7 (dùng trong mạng riêng) -> Octet đầu tiên có thể là FC hoặc FD. Tuy nhiên khi bạn triển khai, bạn phải đặt L-bit (bit ngoài cùng bên phải của octet đầu tiên) thành 1, có nghĩa là hai chữ số đầu tiên sẽ là FD."
+  },
+  {
+    "index": 482,
+    "translated": "Kéo và thả các chuẩn không dây từ bên trái vào số lượng kênh không chồng lấn (non-overlapping channel) mà chúng hỗ trợ bên phải."
+  },
+  {
+    "index": 486,
+    "translated": "3 Kênh Không Chồng Lấn:\n+ 802.11b\n+ 802.11g\n+ 802.11n 2.4 GHz"
+  },
+  {
+    "index": 487,
+    "translated": "23 Kênh Không Chồng Lấn:\n+ 802.11a\n+ 802.11n 5 GHz"
+  },
+  {
+    "index": 489,
+    "translated": "Đối với 802.11n, trong băng tần 2.4 GHz, có ba kênh 20 MHz không chồng lấn hoặc một kênh 40 MHz. Trong băng tần 5 GHz, tồn tại hai mươi bốn kênh 20 MHz không chồng lấn hoặc tối đa mười hai kênh 40 MHz."
+  },
+  {
+    "index": 490,
+    "translated": "Cũng trong bảng \"Comparison of 802.11 LAN Standards\" của tài liệu tham khảo bên dưới, chúng ta có thể thấy \"Maximum Non-Overlapping Channels (Americas)\" của 802.11b & 802.11g là 3."
+  },
+  {
+    "index": 491,
+    "translated": "Reference: https://www.air802.com/ieee-802.11-standards-facts-amp-channels.html"
+  },
+  {
+    "index": 493,
+    "translated": "Kéo và thả các câu phát biểu về AAA từ bên trái vào các dịch vụ AAA tương ứng bên phải. Không phải tất cả các tùy chọn đều được sử dụng."
+  },
+  {
+    "index": 497,
+    "translated": "Authentication\n+ Nó cho phép và từ chối các lần đăng nhập\n+ Nó hỗ trợ các tùy chọn local, PPP, RADIUS và TACACS+"
+  },
+  {
+    "index": 498,
+    "translated": "Authorization\n+ Nó gán các thuộc tính theo từng người dùng\n+ Nó hạn chế các lệnh CLI mà người dùng có thể thực hiện"
+  },
+  {
+    "index": 500,
+    "translated": "Kéo và thả các thành phần điện toán đám mây (cloud-computing) từ bên trái vào các mô tả đúng bên phải."
+  },
+  {
+    "index": 504,
+    "translated": "+ Nhóm tài nguyên có thể mở rộng nhanh chóng để đáp ứng nhu cầu: khả năng co giãn nhanh (rapid elasticity)\n+ Người tiêu dùng có thể chọn khi nào bắt đầu hoặc dừng sử dụng dịch vụ: dịch vụ tự phục vụ theo yêu cầu (on-demand self-service)\n+ Nhà cung cấp phân bổ CPU, bộ nhớ và ổ đĩa từ tài nguyên tính toán chia sẻ cho nhiều khách hàng: gộp tài nguyên (resource pooling)\n+ Nhà cung cấp có thể tính phí người tiêu dùng theo mức sử dụng: dịch vụ đo lường (measured service)\n+ Dịch vụ khả dụng từ nhiều loại thiết bị và mạng: truy cập mạng rộng (broad network access)"
+  },
+  {
+    "index": 506,
+    "translated": "Dịch vụ tự phục vụ theo yêu cầu (On-demand self-service): Người tiêu dùng có thể tự cung cấp các khả năng tính toán, như thời gian server và lưu trữ mạng, khi cần một cách tự động mà không cần tương tác người với mỗi nhà cung cấp dịch vụ."
+  },
+  {
+    "index": 507,
+    "translated": "Truy cập mạng rộng (Broad network access): Các khả năng có sẵn qua mạng và được truy cập thông qua các cơ chế tiêu chuẩn thúc đẩy sử dụng bởi các nền tảng thin hoặc thick client không đồng nhất (ví dụ: điện thoại di động, máy tính bảng, laptop và máy trạm)."
+  },
+  {
+    "index": 508,
+    "translated": "Gộp tài nguyên (Resource pooling): Tài nguyên tính toán của nhà cung cấp được gộp để phục vụ nhiều người tiêu dùng sử dụng mô hình đa thuê (multi-tenant), với các tài nguyên vật lý và ảo khác nhau được phân bổ và tái phân bổ động theo nhu cầu của người tiêu dùng. Có sự độc lập về vị trí trong đó khách hàng thường không có quyền kiểm soát hoặc kiến thức về vị trí chính xác của tài nguyên được cung cấp nhưng có thể chỉ định vị trí ở mức trừu tượng cao hơn (ví dụ: quốc gia, bang hoặc trung tâm dữ liệu). Ví dụ về tài nguyên bao gồm lưu trữ, xử lý, bộ nhớ và băng thông mạng."
+  },
+  {
+    "index": 509,
+    "translated": "Khả năng co giãn nhanh (Rapid elasticity): Các khả năng có thể được cung cấp và giải phóng một cách co giãn, trong một số trường hợp tự động, để mở rộng nhanh chóng ra ngoài và vào trong tương xứng với nhu cầu. Đối với người tiêu dùng, các khả năng có sẵn để cung cấp thường dường như không giới hạn và có thể được sử dụng với bất kỳ số lượng nào vào bất kỳ lúc nào."
+  },
+  {
+    "index": 510,
+    "translated": "Dịch vụ đo lường (Measured service): Hệ thống đám mây tự động kiểm soát và tối ưu hóa việc sử dụng tài nguyên bằng cách tận dụng khả năng đo lường ở một mức trừu tượng phù hợp với loại dịch vụ (ví dụ: lưu trữ, xử lý, băng thông và tài khoản người dùng hoạt động). Việc sử dụng tài nguyên có thể được giám sát, kiểm soát và báo cáo, cung cấp sự minh bạch cho cả nhà cung cấp và người tiêu dùng dịch vụ được sử dụng."
+  },
+  {
+    "index": 511,
+    "translated": "Reference: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf"
+  },
+  {
+    "index": 513,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 514,
+    "translated": "EIGRP: 192.168.12.0/24\nRIP: 192.168.12.0/27\nOSPF: 192.168.12.0/28"
+  },
+  {
+    "index": 515,
+    "translated": "Router quản lý lưu lượng đến 192.168.12.16 như thế nào?"
+  },
+  {
+    "index": 516,
+    "translated": "A. Nó chọn tuyến RIP vì nó có tiền tố dài nhất bao gồm địa chỉ đích.\nB. Nó cân bằng tải giữa cả ba tuyến.\nC. Nó chọn tuyến OSPF vì nó có tiền tố dài nhất bao gồm địa chỉ đích.\nD. Nó chọn tuyến EIGRP vì nó có administrative distance thấp nhất."
+  },
+  {
+    "index": 518,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 520,
+    "translated": "Địa chỉ IP 192.168.12.16 không thuộc mạng con OSPF 192.168.12.0/28 (mạng con này chỉ nằm trong khoảng từ 192.168.12.0 đến 192.168.12.15) nên tuyến RIP sẽ được chọn là kết quả khớp tiền tố dài nhất (longest prefix match)."
+  },
+  {
+    "index": 522,
+    "translated": "Kéo và thả các chế độ cổng VLAN từ bên trái vào các mô tả bên phải."
+  },
+  {
+    "index": 526,
+    "translated": "+ cho phép cổng thuộc một VLAN khi được cấu hình thủ công: static access\n+ cho phép cổng được gán tự động vào một VLAN: dynamic access\n+ cho phép cổng thuộc một hoặc nhiều VLAN: trunk\n+ cho phép cổng hỗ trợ một VLAN duy nhất qua mạng nhà cung cấp dịch vụ: tunnel\n+ cho phép cổng giao tiếp với các cổng khác trong cùng community VLAN: private"
+  },
+  {
+    "index": 528,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 529,
+    "translated": "CPE# show ipv6 route"
+  },
+  {
+    "index": 530,
+    "translated": "IPv6 Routing Table - default - 6 entries"
+  },
+  {
+    "index": 531,
+    "translated": "Codes: C - Connected, L - Local, S - Static, U - Per-user Static route"
+  },
+  {
+    "index": 532,
+    "translated": "B - BGP, R - RIP, H - NHRP, II - ISIS L1"
+  },
+  {
+    "index": 533,
+    "translated": "I2 - ISIS L2, IA - ISIS interarea, IS - ISIS summary, D - EIGRP"
+  },
+  {
+    "index": 534,
+    "translated": "EX - EIGRP external, ND - ND Default, NDp - ND Prefix, DCE - Destination"
+  },
+  {
+    "index": 535,
+    "translated": "NDr - Redirect, O - OSPF Intra, OI - OSPF Inter, OE1 - OSPF ext 1"
+  },
+  {
+    "index": 536,
+    "translated": "OE2 - OSPF ext 2, ON1 - OSPF NSSA ext 1, ON2 - OSPF NSSA ext 2"
+  },
+  {
+    "index": 537,
+    "translated": "la - LISP alt, lr - LISP site-registrations, ld - LISP dyn-eid"
+  },
+  {
+    "index": 538,
+    "translated": "lA - LISP away, le - LISP extranet-policy, lp - LISP publications"
+  },
+  {
+    "index": 540,
+    "translated": "via FE80::A8BB:CCFF:FE00:200, Ethernet0/0"
+  },
+  {
+    "index": 542,
+    "translated": "via Ethernet0/0, directly connected"
+  },
+  {
+    "index": 543,
+    "translated": "L 2001:DB8:1234:1:A8BB:CCFF:FE00:100/128 [0/0]"
+  },
+  {
+    "index": 544,
+    "translated": "via Ethernet0/0, receive"
+  },
+  {
+    "index": 546,
+    "translated": "via Ethernet0/1, directly connected"
+  },
+  {
+    "index": 547,
+    "translated": "L 2001:DB8:1234:2:A8BB:CCFF:FE00:110/128 [0/0]"
+  },
+  {
+    "index": 548,
+    "translated": "via Ethernet0/1, receive"
+  },
+  {
+    "index": 550,
+    "translated": "via Null0, receive"
+  },
+  {
+    "index": 551,
+    "translated": "Quản trị viên phải cấu hình một tuyến mặc định tĩnh dự phòng (floating static default route) trỏ đến 2001:db8:1234:2::1 và chỉ thay thế tuyến mặc định hiện tại nếu nó bị lỗi. Lệnh nào kỹ sư phải cấu hình trên CPE?"
+  },
+  {
+    "index": 552,
+    "translated": "A. ipv6 route ::/0 2001:db8:1234:2::1 2\nB. ipv6 route ::/0 2001:db8:1234:2::1 3\nC. ipv6 route ::/128 2001:db8:1234:2::1 3\nD. ipv6 route ::/0 2001:db8:1234:2::1 1"
+  },
+  {
+    "index": 554,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 556,
+    "translated": "Từ dòng output \"ND ::/0 [2/0]\" chúng ta biết rằng tuyến mặc định tĩnh hiện tại có AD là 2, vì vậy chúng ta phải cấu hình tuyến mặc định tĩnh dự phòng với AD bằng 3 hoặc lớn hơn để nó hoạt động như tuyến dự phòng (backup route)."
+  },
+  {
+    "index": 558,
+    "translated": "Lợi ích của việc sử dụng địa chỉ IPv4 riêng (private IPv4 addressing) là gì?"
+  },
+  {
+    "index": 559,
+    "translated": "A. cung cấp kết nối đáng tin cậy giữa các thiết bị cùng loại\nB. cho phép kết nối an toàn qua Internet\nC. che chắn các thiết bị mạng nội bộ khỏi truy cập bên ngoài\nD. có thể định tuyến được qua mạng bên ngoài"
+  },
+  {
+    "index": 561,
+    "translated": "Answer: C"
+  },
+  {
+    "index": 563,
+    "translated": "Tính năng QoS nào loại bỏ lưu lượng vượt quá tốc độ truy cập cam kết (committed access rate)?"
+  },
+  {
+    "index": 564,
+    "translated": "A. weighted fair queuing\nB. FIFO\nC. shaping\nD. policing"
+  },
+  {
+    "index": 566,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 568,
+    "translated": "Policing: được sử dụng để kiểm soát tốc độ lưu lượng đi qua giao diện. Trong khi vượt quá băng thông (vượt quá tốc độ tối đa đã cấu hình), lưu lượng dư thừa thường bị loại bỏ hoặc đánh dấu lại (remark)."
+  },
+  {
+    "index": 570,
+    "translated": "Hai switch đã được triển khai và tất cả giao diện ở mức cấu hình mặc định. Một liên kết trunk phải được triển khai giữa hai switch với các yêu cầu sau:\n+ sử dụng giao thức trunk theo chuẩn công nghiệp\n+ cho phép VLAN 1-10 và từ chối các VLAN khác"
+  },
+  {
+    "index": 571,
+    "translated": "Các cổng kết nối phải được cấu hình như thế nào?"
+  },
+  {
+    "index": 572,
+    "translated": "A. switchport mode trunk\nswitchport trunk allowed vlans 1-10\nswitchport trunk native vlan 11"
+  },
+  {
+    "index": 573,
+    "translated": "B. switchport mode trunk\nswitchport trunk encapsulation dot1q\nswitchport trunk allowed vlans 1-10"
+  },
+  {
+    "index": 574,
+    "translated": "C. switchport mode dynamic desirable\nchannel-group 1 mode desirable\nswitchport trunk encapsulation isl\nswitchport trunk allowed vlan except 11-4094"
+  },
+  {
+    "index": 575,
+    "translated": "D. switchport mode dynamic\nchannel-protocol lacp\nswitchport trunk allowed vlans 1-10"
+  },
+  {
+    "index": 577,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 579,
+    "translated": "\"Sử dụng giao thức trunk theo chuẩn công nghiệp\" nên chúng ta phải sử dụng 802.1Q, không phải ISL."
+  },
+  {
+    "index": 581,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 583,
+    "translated": "Một kỹ sư mạng đang cấu hình WLAN để kết nối với mạng 172.16.10.0/24 trên VLAN 20. Kỹ sư muốn giới hạn số lượng thiết bị kết nối với WLAN trên SSID USERWL là 125. Kỹ sư phải thực hiện cấu hình nào trên WLC?"
+  },
+  {
+    "index": 584,
+    "translated": "A. Trong cấu hình WLAN, đặt giá trị Maximum Allowed Clients thành 125.\nB. Trong cấu hình Advanced, đặt giá trị DTIM thành 125.\nC. Trong cấu hình Controller IPv6, đặt giá trị Throttle thành 125.\nD. Trong cấu hình Management Software activation, đặt giá trị Clients thành 125."
+  },
+  {
+    "index": 586,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 588,
+    "translated": "Trong ví dụ bên dưới, chúng ta có thể giới hạn số lượng client có thể truy cập trong một WLAN xuống 50 với trường \"Maximum Allowed Clients\":"
+  },
+  {
+    "index": 590,
+    "translated": "Reference: https://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/113303-restrict-wlan-clients-00.html"
+  },
+  {
+    "index": 591,
+    "translated": "Lưu ý: DTIM là viết tắt của Delivery traffic indication map hoặc message. Về cơ bản nó là một thông báo bổ sung được thêm sau beacon broadcast thông thường bởi router hoặc access point của bạn."
+  },
+  {
+    "index": 593,
+    "translated": "Tại sao quản trị viên mạng chọn triển khai tự động hóa (automation) trong môi trường mạng?"
+  },
+  {
+    "index": 594,
+    "translated": "A. để tập trung lưu trữ thông tin thiết bị\nB. để đơn giản hóa quá trình duy trì trạng thái cấu hình nhất quán trên tất cả thiết bị\nC. để triển khai mặt phẳng quản lý (management plane) tách biệt khỏi phần còn lại của mạng\nD. để triển khai quản lý tài khoản người dùng tập trung"
+  },
+  {
+    "index": 596,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 598,
+    "translated": "Khi triển khai mạng mới bao gồm cả thiết bị mạng Cisco và bên thứ ba, giao thức dự phòng (redundancy protocol) nào tránh gián đoạn lưu lượng mạng nếu router default gateway bị lỗi?"
+  },
+  {
+    "index": 599,
+    "translated": "A. FHRP\nB. VRRP\nC. HSRP\nD. GLBP"
+  },
+  {
+    "index": 601,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 603,
+    "translated": "Chỉ có VRRP là giao thức chuẩn mở (open standard protocol)."
+  },
+  {
+    "index": 605,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 607,
+    "translated": "Một quản trị viên mạng cấu hình CPE để cung cấp quyền truy cập internet cho trụ sở công ty. Lưu lượng phải được cân bằng tải qua ISP1 và ISP2 để đảm bảo tính dự phòng. Hai tập lệnh nào phải được cấu hình trên router CPE? (Chọn hai)"
+  },
+  {
+    "index": 608,
+    "translated": "A. ip route 0.0.0.0 0.0.0.0 198.51.100.1\nip route 0.0.0.0 0.0.0.0 203.0.113.1 2"
+  },
+  {
+    "index": 609,
+    "translated": "B. ip route 0.0.0.0 128.0.0.0 198.51.100.1\nip route 128.0.0.0 128.0.0.0 203.0.113.1\nip route 0.0.0.0 0.0.0.0 198.51.100.1\nip route 0.0.0.0 0.0.0.0 203.0.113.1"
+  },
+  {
+    "index": 610,
+    "translated": "C. ip route 0.0.0.0 128.0.0.0 198.51.100.1\nip route 128.0.0.0 128.0.0.0 203.0.113.1"
+  },
+  {
+    "index": 611,
+    "translated": "D. ip route 0.0.0.0 0.0.0.0 198.51.100.1 255\nip route 0.0.0.0 0.0.0.0 203.0.113.1 255\nip route 128.0.0.0 128.0.0.0 203.0.113.1"
+  },
+  {
+    "index": 612,
+    "translated": "E. ip route 0.0.0.0 0.0.0.0 198.51.100.1\nip route 0.0.0.0 0.0.0.0 203.0.113.1"
+  },
+  {
+    "index": 614,
+    "translated": "Answer: B E"
+  },
+  {
+    "index": 616,
+    "translated": "Đáp án A không đúng vì nó sử dụng tuyến tĩnh dự phòng (floating static route) với AD là 2 cho tuyến tĩnh thứ hai nên lưu lượng không thể cân bằng tải."
+  },
+  {
+    "index": 617,
+    "translated": "Administrative distance bằng 255 được coi là không thể truy cập, và các tuyến tĩnh có administrative distance bằng 255 không bao giờ được đưa vào bảng định tuyến -> Đáp án D không đúng."
+  },
+  {
+    "index": 618,
+    "translated": "Bây giờ hãy giải thích chi tiết hơn về lệnh \"ip route 128.0.0.0 128.0.0.0 …\". Nó giống như lệnh \"ip route 0.0.0.0 128.0.0.0 …\" hoặc chúng ta có thể gọi nó là tuyến \"0.0.0.0/1\". Vì quy tắc \"khớp tiền tố dài nhất\" (longest-prefix match), nó được ưu tiên hơn tuyến tĩnh mặc định \"0.0.0.0/0\". Vì vậy tuyến 0.0.0.0/0 sẽ không được sử dụng."
+  },
+  {
+    "index": 619,
+    "translated": "Bây giờ chúng ta có thể thấy tại sao đáp án C không đúng vì tuyến \"ip route 128.0.0.0 128.0.0.0 203.0.113.1\" luôn được ưu tiên hơn \"ip route 0.0.0.0 128.0.0.0 198.51.100.1\"."
+  },
+  {
+    "index": 620,
+    "translated": "Đáp án B đúng vì chúng ta có hai tuyến \"0.0.0.0/1\" (\"0.0.0.0 128.0.0.0\" và \"128.0.0.0 128.0.0.0\" hoàn toàn giống nhau)"
+  },
+  {
+    "index": 622,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 631,
+    "translated": "Một quản trị viên mạng đang cấu hình một router cho quyền truy cập của người dùng qua SSH. Lệnh service-password encryption đã được phát hành. Cấu hình phải đáp ứng các yêu cầu sau:"
+  },
+  {
+    "index": 632,
+    "translated": "– Tạo tên người dùng là CCUser.\n– Tạo mật khẩu là NA!2$cc.\n– Mã hóa mật khẩu người dùng."
+  },
+  {
+    "index": 633,
+    "translated": "Cấu hình nào phải được thực hiện để đáp ứng các yêu cầu?"
+  },
+  {
+    "index": 634,
+    "translated": "A. username CCUser password NA!2$cc\nenable password level 5 NA!2$cc"
+  },
+  {
+    "index": 635,
+    "translated": "B. username CCUser privilege 15 password NA!2$cc\nenable secret 0 NA!2$cc"
+  },
+  {
+    "index": 636,
+    "translated": "C. username CCUser secret NA!2$cc"
+  },
+  {
+    "index": 637,
+    "translated": "D. username CCUser privilege 10 password NA!2$cc"
+  },
+  {
+    "index": 639,
+    "translated": "Answer: C"
+  },
+  {
+    "index": 641,
+    "translated": "Trên thực tế tất cả các đáp án khác trông cũng có vẻ tốt, nhưng đáp án C là lựa chọn tốt nhất vì mật khẩu của tên người dùng được mã hóa với mức bảo mật cao nhất."
+  },
+  {
+    "index": 643,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 645,
+    "translated": "Một kỹ sư phải cấu hình tuyến mạng tĩnh giữa hai mạng để máy chủ A giao tiếp với máy chủ B. Kéo và thả các lệnh từ bên trái vào các router mà chúng phải được cấu hình bên phải. Không phải tất cả các lệnh đều được sử dụng."
+  },
+  {
+    "index": 653,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 662,
+    "translated": "Subnet mask cho tuyến 172.16.4.0 là gì?"
+  },
+  {
+    "index": 665,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 667,
+    "translated": "Giao diện (interface) hoặc cổng (port) nào trên WLC là mặc định cho việc quản trị thiết bị trong băng (in-band) và giao tiếp giữa bộ điều khiển và các access point?"
+  },
+  {
+    "index": 668,
+    "translated": "A. virtual interface\nB. management interface\nC. console port\nD. service port"
+  },
+  {
+    "index": 670,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 672,
+    "translated": "Management interface là giao diện mặc định cho việc quản lý trong băng (in-band) của bộ điều khiển và kết nối tới các dịch vụ doanh nghiệp như máy chủ AAA. Nó cũng được sử dụng cho giao tiếp giữa bộ điều khiển và các access point, cho tất cả CAPWAP hoặc lưu lượng thông điệp di động và đường hầm liên bộ điều khiển."
+  },
+  {
+    "index": 673,
+    "translated": "Reference: https://www.cisco.com/c/en/us/td/docs/wireless/controller/7-4/configuration/guides/consolidated/b_cg74_CONSOLIDATED/b_cg74_CONSOLIDATED_chapter_010011011.html"
+  },
+  {
+    "index": 675,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 677,
+    "translated": "Địa chỉ IPv6 cho đoạn mạng LAN trên router R2 phải được cấu hình bằng định dạng EUI-64. Địa chỉ nào phải được sử dụng?"
+  },
+  {
+    "index": 678,
+    "translated": "A. ipv6 address 2001:DB8:D8D2:1009:10A0:ABFF:FECC:1 eui-64\nB. ipv6 address 2001:DB8:D8D2:1009:12A0:AB34:FFCC:1 eui-64\nC. ipv6 address 2001:DB8:D8D2:1009:1230:ABFF:FECC:1 eui-64\nD. ipv6 address 2001:DB8:D8D2:1009:4345:80FF:FF16:7 eui-64"
+  },
+  {
+    "index": 680,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 682,
+    "translated": "Trên giao diện LAN của R2, chúng ta sử dụng lệnh \"ipv6 address 2001:db8:d8d2:1009::/64 eui-64\" để yêu cầu router tự động gán địa chỉ IPv6 cho giao diện này. R2 lấy địa chỉ MAC của giao diện LAN là 12A0.ABDD.0002 và chèn FFFE vào giữa hai nửa này để tạo thành địa chỉ 64-bit 2001:DB8:D8D2:1009:12A0.ABFF:FEdd:0002."
+  },
+  {
+    "index": 683,
+    "translated": "Chúng ta phải đảo ngược cờ universal/local (U/L) (bit thứ 7) trong phần OUI của địa chỉ, vì vậy 12 (ở dạng hex) = 0001 0010 (ở dạng nhị phân) do đó sau khi lật bit thứ 7, chúng ta có 0001 0000 = 10 (ở dạng hex). Do đó, địa chỉ IPv6 EUI-64 sẽ là 2001:DB8:D8D2:1009:10A0:ABFF:FECC:1."
+  },
+  {
+    "index": 684,
+    "translated": "Lưu ý: Có một số tài liệu nói rằng chúng ta phải lật bit thứ 7 trong khi một số khác lại nói chúng ta phải thay đổi bit thứ 7 thành 1. Vì vậy chúng tôi đã thử nghiệm với IOSv15.4:"
+  },
+  {
+    "index": 686,
+    "translated": "Chúng ta thấy địa chỉ MAC của E0/0 là \"aabb……..\" (\"a\" ở dạng hex = \"1010\") nên bit thứ 7 là 1. Khi chúng ta bật IPv6 trên giao diện này, địa chỉ link-local chuyển thành \"FE80::A8BB……..\". Vì vậy \"a\" đổi thành 8 (\"8\" ở dạng hex = 1000\") và chúng tôi chắc chắn rằng bit 1 đã đổi thành 0. Nhưng đây chỉ là địa chỉ link-local nên chúng tôi sẽ cố gắng gán một địa chỉ global unique:"
+  },
+  {
+    "index": 688,
+    "translated": "Địa chỉ global unique được gán là \"2001::A8BB……..\" nên bit 1 cũng đổi thành 0."
+  },
+  {
+    "index": 690,
+    "translated": "Một công ty có mỗi văn phòng sử dụng truy cập không dây với nhiều SSID nhưng giới hạn khả năng chuyển vùng (roaming), bao phủ các vị trí khác nhau trên mạng LAN nội bộ của văn phòng, mạng khách, và quyền truy cập BYOD cho nhân viên. Thay đổi nào phải được bật để cải thiện trải nghiệm khách hàng trong quá trình thay đổi SSID?"
+  },
+  {
+    "index": 691,
+    "translated": "A. Tối ưu hóa dự đoán chuyển vùng được hỗ trợ (Assisted Roaming Prediction Optimization)\nB. Chuyển đổi nhanh (Fast Transition)\nC. Danh sách láng giềng băng tần kép (Neighbor List Dual Band)\nD. Thay đổi SSID nhanh (Fast SSID Change)"
+  },
+  {
+    "index": 693,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 695,
+    "translated": "\"Khi bạn bật Thay đổi SSID nhanh (Fast SSID Change), bộ điều khiển cho phép các client di chuyển giữa các SSID. Khi client gửi một yêu cầu liên kết mới cho một SSID khác, mục nhập client trong bảng kết nối của bộ điều khiển sẽ bị xóa trước khi client được thêm vào SSID mới.\""
+  },
+  {
+    "index": 697,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 699,
+    "translated": "EtherChannel được cấu hình với tốc độ (speed) 1000 và chế độ song công (duplex) là full ở cả hai đầu của channel group 1. Bước tiếp theo để cấu hình kênh trên switch A phản hồi với (nhưng không khởi tạo) giao tiếp LACP là gì?"
+  },
+  {
+    "index": 700,
+    "translated": "A. interface range gigabitethernet0/0/0 -15\nchannel-group 1 mode desirable"
+  },
+  {
+    "index": 701,
+    "translated": "B. interface range gigabitethernet0/0/0 -15\nchannel-group 1 mode on"
+  },
+  {
+    "index": 702,
+    "translated": "C. interface port-channel 1\nchannel-group 1 mode auto"
+  },
+  {
+    "index": 703,
+    "translated": "D. interface port-channel 1\nchannel-group 1 mode passive"
+  },
+  {
+    "index": 705,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 707,
+    "translated": "Hai công nghệ VPN nào được Cisco khuyến nghị cho nhiều văn phòng chi nhánh và triển khai quy mô lớn? (Chọn hai)"
+  },
+  {
+    "index": 708,
+    "translated": "A. IPsec remote access\nB. site-to-site VPN\nC. clientless VPN\nD. GETVPN\nE. DMVPN"
+  },
+  {
+    "index": 710,
+    "translated": "Answer: D E"
+  },
+  {
+    "index": 712,
+    "translated": "Cisco DMVPN có thể được triển khai cùng với Cisco IOS Firewall và Cisco IOS IPS, cũng như tính năng chất lượng dịch vụ (QoS), IP Multicast, split tunneling, và các cơ chế chuyển đổi dự phòng dựa trên định tuyến. Triển khai Cisco DMVPN quy mô lớn, tính khả dụng cao được thực hiện nhờ vào việc cân bằng tải qua nhiều hub Cisco DMVPN."
+  },
+  {
+    "index": 713,
+    "translated": "Reference: https://www.cisco.com/c/en/us/products/collateral/security/dynamic-multipoint-vpn-dmvpn/data_sheet_c78-468520.html"
+  },
+  {
+    "index": 714,
+    "translated": "Get VPNs cung cấp khả năng bảo vệ truyền dẫn không đường hầm (tunnel free), phi kết nối (connectionless) quy mô lớn, tận dụng hạ tầng định tuyến hiện có và có thể được sử dụng với các mạng MPLS, IP, Frame relay và ATM."
+  },
+  {
+    "index": 715,
+    "translated": "Reference: https://ipwithease.com/flexvpn-vs-getvpn/"
+  },
+  {
+    "index": 717,
+    "translated": "Site-to-Site VPN là một VPN đơn giản kết nối một site trung tâm và một site từ xa, hoặc một VPN hub-and-spoke kết nối một site trung tâm với nhiều site từ xa -> Nó không phù hợp cho các triển khai quy mô lớn."
+  },
+  {
+    "index": 718,
+    "translated": "Với clientless VPN, một đường hầm được thiết lập từ trình duyệt web trên thiết bị của người dùng từ xa đến giao diện bên ngoài của thành phần SSL của cổng VPN -> Nó không phù hợp cho các triển khai quy mô lớn."
+  },
+  {
+    "index": 719,
+    "translated": "IPSec remote access được sử dụng để kết nối các máy khách truy cập từ xa, chẳng hạn như PC hoặc thiết bị văn phòng nhỏ, văn phòng nhà (SOHO)."
+  },
+  {
+    "index": 721,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 736,
+    "translated": "Có bao nhiêu mảng (array) hiện diện trong dữ liệu JSON?"
+  },
+  {
+    "index": 737,
+    "translated": "A. một\nB. ba\nC. sáu\nD. chín"
+  },
+  {
+    "index": 739,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 741,
+    "translated": "Mảng JSON (JSON array) được bao quanh bởi dấu ngoặc vuông [ ]. Trong câu hỏi này có tổng cộng ba dấu ngoặc vuông."
+  },
+  {
+    "index": 743,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 768,
+    "translated": "Một quản trị viên nhận được cuộc gọi từ một văn phòng chi nhánh về hiệu suất ứng dụng kém được lưu trữ tại trụ sở chính. Ethernet 1 được kết nối giữa Router1 và switch LAN. Điều gì xác định được sự cố?"
+  },
+  {
+    "index": 769,
+    "translated": "A. Có sự không khớp về duplex.\nB. MTU không được đặt thành giá trị mặc định.\nC. Liên kết đang bị sử dụng quá mức (over utilized).\nD. Chính sách QoS đang loại bỏ lưu lượng."
+  },
+  {
+    "index": 771,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 773,
+    "translated": "Giao diện này gặp tình trạng collision cao (15000 collision) do đó một đầu có thể đang được cấu hình là \"Half-duplex\"."
+  },
+  {
+    "index": 775,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 785,
+    "translated": "Một kỹ sư mạng cập nhật cấu hình hiện tại trên giao diện fastethernet1/1 switch SW1. Nó phải thiết lập một EtherChannel bằng cách sử dụng cùng một chỉ định nhóm với một switch của nhà cung cấp khác (vendor). Cấu hình nào phải được thực hiện để hoàn tất quá trình?"
+  },
+  {
+    "index": 786,
+    "translated": "A. interface port-channel 2\nchannel-group 2 mode desirable"
+  },
+  {
+    "index": 787,
+    "translated": "B. interface fastethernet 1/1\nchannel-group 2 mode on"
+  },
+  {
+    "index": 788,
+    "translated": "C. interface port-channel 2\nchannel-group 2 mode auto"
+  },
+  {
+    "index": 789,
+    "translated": "D. interface fastethernet 1/1\nchannel-group 2 mode active"
+  },
+  {
+    "index": 791,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 793,
+    "translated": "PaGP là giao thức độc quyền của Cisco nên chúng ta phải chuyển sang LACP, một giao thức tiêu chuẩn mở."
+  },
+  {
+    "index": 795,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 797,
+    "translated": "Truy cập cục bộ cho R4 phải được thiết lập và phải đáp ứng các yêu cầu sau:\n– Chỉ cho phép truy cập Telnet.\n– Mật khẩu enable phải được lưu trữ an toàn.\n– Mật khẩu enable phải được áp dụng dưới dạng văn bản gốc (plain text).\n– Quyền truy cập đầy đủ vào R4 phải được cho phép khi đăng nhập thành công."
+  },
+  {
+    "index": 798,
+    "translated": "Script cấu hình nào đáp ứng được các yêu cầu?"
+  },
+  {
+    "index": 807,
+    "translated": "A. Option A\nB. Option B\nC. Option C\nD. Option D"
+  },
+  {
+    "index": 808,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 810,
+    "translated": "\"Chỉ cho phép truy cập Telnet\" -> Chỉ Option B và Option C là đúng."
+  },
+  {
+    "index": 811,
+    "translated": "Trên thực tế, lệnh \"login authentication\" trong Option C chỉ có thể được sử dụng khi AAA được bật (với lệnh \"aaa new-model\"). Và chúng ta không thể sử dụng \"login authentication\" mà không chỉ định danh sách xác thực:"
+  },
+  {
+    "index": 813,
+    "translated": "Do đó chỉ còn Option B. Nhưng thực tế Option B không hoàn toàn đúng vì \"Quyền truy cập đầy đủ vào R4 phải được cho phép khi đăng nhập thành công\" nhưng trong option B chúng ta phải nhập mật khẩu bí mật (secret password) để có quyền truy cập đầy đủ vào R4 sau khi đăng nhập (với tên người dùng \"test1\" và mật khẩu \"testpass1\")."
+  },
+  {
+    "index": 815,
+    "translated": "Một gói tin từ văn phòng chi nhánh của công ty có đích là host 172.31.0.1 tại trụ sở chính. Router gửi có ba kết quả khớp có thể có trong bảng định tuyến của nó cho gói tin: các tiền tố 172.31.0.0/16, 172.31.0.0/24, và 172.31.0.0/25. Router xử lý gói tin như thế nào?"
+  },
+  {
+    "index": 816,
+    "translated": "A. Nó gửi lưu lượng qua tuyến mặc định 0.0.0.0/0.\nB. Nó gửi lưu lượng qua tiền tố 172.31.0.0/16.\nC. Nó gửi lưu lượng qua tiền tố 172.31.0.0/25.\nD. Nó gửi lưu lượng qua tiền tố 172.31.0.0/24."
+  },
+  {
+    "index": 818,
+    "translated": "Answer: C"
+  },
+  {
+    "index": 820,
+    "translated": "Hành động nào phải được thực hiện khi tính năng bảo vệ bằng mật khẩu (password protection) được triển khai?"
+  },
+  {
+    "index": 821,
+    "translated": "A. Lưu trữ mật khẩu như các liên hệ (contacts) trên thiết bị di động với xác thực một yếu tố.\nB. Chia sẻ mật khẩu với ban quản lý IT cấp cao để đảm bảo giám sát chặt chẽ.\nC. Bao gồm các ký tự đặc biệt và làm cho mật khẩu càng dài càng tốt.\nD. Sử dụng độ dài ít hơn tám ký tự khi mật khẩu phức tạp."
+  },
+  {
+    "index": 823,
+    "translated": "Answer: C"
+  },
+  {
+    "index": 825,
+    "translated": "Khi một access point đang tìm cách gia nhập (join) vào một bộ điều khiển mạng WLAN, thông điệp nào được gửi đến giao diện AP-Manager?"
+  },
+  {
+    "index": 826,
+    "translated": "A. DHCP request\nB. DHCP discover\nC. discovery response\nD. discovery request"
+  },
+  {
+    "index": 828,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 830,
+    "translated": "Các LAP luôn kết nối với địa chỉ giao diện management của bộ điều khiển đầu tiên bằng một yêu cầu khám phá (discovery request). Bộ điều khiển sau đó thông báo cho LAP địa chỉ IP của giao diện Layer 3 AP-manager (có thể cũng là giao diện management theo mặc định) để LAP có thể gửi yêu cầu gia nhập (join request) đến giao diện AP-manager sau đó."
+  },
+  {
+    "index": 831,
+    "translated": "Reference: https://www.cisco.com/c/en/us/support/docs/wireless/5500-series-wireless-controllers/119286-lap-notjoin-wlc-tshoot.html"
+  },
+  {
+    "index": 833,
+    "translated": "Lý do tại sao quản trị viên chọn triển khai phương pháp quản lý mạng tự động là gì?"
+  },
+  {
+    "index": 834,
+    "translated": "A. Giảm thiểu sự không nhất quán trong cấu hình mạng.\nB. Tăng chi phí quản lý định kỳ.\nC. Cho phép cấu hình và triển khai \"box by box\" (từng thiết bị một).\nD. Giải mã các chính sách mật khẩu đơn giản."
+  },
+  {
+    "index": 836,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 838,
+    "translated": "Thiết bị nào phân chia mạng theo các miền bảo mật (security domain)?"
+  },
+  {
+    "index": 839,
+    "translated": "A. access point\nB. firewall\nC. intrusion protection system\nD. wireless controller"
+  },
+  {
+    "index": 841,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 843,
+    "translated": "Hai đặc điểm nào là đặc trưng của các máy ảo (virtual machines - VMs)? (Chọn hai)"
+  },
+  {
+    "index": 844,
+    "translated": "A. Một VM trên một hypervisor tự động được kết nối với các VM khác.\nB. Một VM trên một hypervisor cá nhân chia sẻ tài nguyên một cách đồng đều.\nC. Hệ điều hành của mỗi VM phụ thuộc vào hypervisor của nó.\nD. Mỗi VM hoạt động độc lập với bất kỳ VM nào khác trong cùng một hypervisor.\nE. nhiều VM hoạt động trên cùng một phần cứng cơ bản (underlying hardware)."
+  },
+  {
+    "index": 846,
+    "translated": "Answer: D E"
+  },
+  {
+    "index": 848,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 869,
+    "translated": "Theo kết quả đầu ra, bộ tham số nào được xác thực bằng cách sử dụng bảng định tuyến của R7?"
+  },
+  {
+    "index": 870,
+    "translated": "A. R7 thiếu gateway of last resort.\nR7 đang nhận các tuyến được phân phối lại (redistributed) từ BGP\nR7 sẽ chuyển tiếp lưu lượng định tuyến đến 10.90.8.0/24."
+  },
+  {
+    "index": 871,
+    "translated": "B. R7 thiếu gateway of last resort.\nR7 đang nhận các tuyến được phân phối lại (redistributed) trong EIGRP\nR7 sẽ chuyển tiếp lưu lượng định tuyến đến 10.90.8.0/24."
+  },
+  {
+    "index": 872,
+    "translated": "C. R7 có gateway of last resort khả dụng.\nR7 đang nhận các tuyến được phân phối lại từ BGP\nR7 sẽ loại bỏ (drop) lưu lượng định tuyến đến 10.90.8.0/24"
+  },
+  {
+    "index": 873,
+    "translated": "D. R7 có gateway of last resort khả dụng.\nR7 đang nhận các tuyến được phân phối lại trong EIGRP\nR7 sẽ loại bỏ (drop) lưu lượng định tuyến đến 10.90.8.0/24."
+  },
+  {
+    "index": 875,
+    "translated": "Answer: D"
+  },
+  {
+    "index": 877,
+    "translated": "Lưu lượng định hướng đến 10.90.8.0/24 khớp với dòng đầu ra \"10.90.0.0/16 [200/0] via 0.0.0.0, 03:57:59, Null0\" nên nó sẽ được chuyển tiếp đến giao diện Null0, đồng nghĩa với việc bị loại bỏ (dropped)."
+  },
+  {
+    "index": 878,
+    "translated": "Từ ký tự \"D EX\", chúng ta biết rằng R7 đang nhận các tuyến được phân phối lại trong EIGRP (một giao thức định tuyến khác được phân phối lại vào EIGRP)."
+  },
+  {
+    "index": 880,
+    "translated": "Tham khảo hình minh họa."
+  },
+  {
+    "index": 891,
+    "translated": "Một gói tin có nguồn từ 10.10.10.1 định tuyến đến 172.16.3.254. Subnet mask của tuyến đích là gì?"
+  },
+  {
+    "index": 894,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 896,
+    "translated": "Gói tin định tuyến đến 172.16.3.254 sẽ được định tuyến thông qua mục nhập \"C 172.16.2.0/23 …\" vì mạng con này kéo dài từ 172.16.2.0 đến 172.16.3.255."
+  },
+  {
+    "index": 898,
+    "translated": "Chế độ hoạt động và vai trò của cổng dự phòng (backup port) trên một phân đoạn LAN chia sẻ trong Rapid PVST+ là gì?"
+  },
+  {
+    "index": 899,
+    "translated": "A. chế độ blocking và cung cấp một đường đi thay thế hướng về bridge được chỉ định (designated bridge)\nB. chế độ listening và cung cấp một đường đi thay thế hướng về root bridge\nC. chế độ forwarding và cung cấp đường đi chi phí thấp nhất đến root bridge cho mỗi VLAN\nD. chế độ learning và cung cấp đường đi ngắn nhất hướng về root bridge xử lý lưu lượng ra khỏi mạng LAN"
+  },
+  {
+    "index": 901,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 903,
+    "translated": "Cổng thay thế (alternate port) và cổng dự phòng (backup port) ở trạng thái chặn (blocking state) (hoặc trạng thái loại bỏ - discarding state) để ngăn chặn vòng lặp (loop)."
+  },
+  {
+    "index": 904,
+    "translated": "Reference: https://www.ciscopress.com/articles/article.asp?p=2832407&seqNum=4"
+  },
+  {
+    "index": 907,
+    "translated": "Hành vi chuyển tiếp từng bước (per-hop forwarding behavior) của DSCP nào được chia thành các phân lớp (subclass) dựa trên xác suất loại bỏ (drop probability)?"
+  },
+  {
+    "index": 908,
+    "translated": "A. class-selector\nB. assured \nC. expedited\nD. default"
+  },
+  {
+    "index": 910,
+    "translated": "Answer: B"
+  },
+  {
+    "index": 912,
+    "translated": "Thuật ngữ Hành vi từng bước (Per-Hop Behaviour - PHB) đề cập đến cách một node sẽ xử lý lưu lượng có cùng giá trị Differentiated Services Code Point (DSCP)."
+  },
+  {
+    "index": 913,
+    "translated": "Assured Forwarding có bốn lớp tiêu chuẩn từ AF1 đến AF4. Cần lưu ý rằng số thứ tự của lớp không quyết định mức độ ưu tiên. Mỗi lớp được xử lý độc lập và đưa vào các hàng đợi khác nhau."
+  },
+  {
+    "index": 914,
+    "translated": "Mỗi lớp AF có IP Precedence riêng với ba xác suất loại bỏ (drop probability): thấp (low), trung bình (medium) và cao (high)."
+  },
+  {
+    "index": 915,
+    "translated": "Reference: https://www.routeprotocol.com/dscp-per-hop-behaviour-assured-forwarding/"
+  },
+  {
+    "index": 917,
+    "translated": "Điều gì xảy ra khi switch nhận được một frame có đích đến là địa chỉ MAC không xác định (unknown MAC address)?"
+  },
+  {
+    "index": 918,
+    "translated": "A. Frame được flood (tràn ngập) đến tất cả các giao diện trong VLAN mà frame đó thuộc về.\nB. Frame được flood đến tất cả các giao diện trong switch.\nC. Frame bị loại bỏ (discarded)\nD. Bảng địa chỉ MAC của switch bị xóa (flushed)"
+  },
+  {
+    "index": 920,
+    "translated": "Answer: A"
+  },
+  {
+    "index": 922,
+    "translated": "Kéo và thả các thông tin về các kiến trúc không dây từ bên trái vào các loại access point bên phải. Không phải tất cả các tùy chọn đều được sử dụng."
+  },
+  {
+    "index": 926,
+    "translated": "Cloud-Based Access Point\n+ được quản lý từ bảng điều khiển dựa trên Web (Web-based dashboard)\n+ hỗ trợ triển khai tự động (automatic deployment)"
+  },
+  {
+    "index": 927,
+    "translated": "Lightweight Access Point\n+ được cấu hình và quản lý bởi một WLC\n+ hỗ trợ các chế độ hoạt động khác nhau (different operational modes)"
+  },
+  {
+    "index": 929,
+    "translated": "Kiểm soát truy cập cuộc gọi (Call Admission Control) dựa trên SIP phải được cấu hình trong Cisco WLC GUI. Các cổng bắt lưu lượng SIP (SIP call-snooping) đã được cấu hình. Hai hành động nào phải được hoàn thành tiếp theo? (Chọn hai)"
+  },
+  {
+    "index": 930,
+    "translated": "A. Đặt mức QoS thành silver hoặc cao hơn cho lưu lượng thoại (voice traffic)\nB. Bật Media Session Snooping trên WLAN\nC. Cấu hình hai vai trò QoS khác nhau cho dữ liệu (data) và thoại (voice)\nD. Đặt mức QoS thành platinum cho lưu lượng thoại\nE. Bật traffic shaping cho giao diện LAN của WLC"
+  },
+  {
+    "index": 932,
+    "translated": "Answer: B D"
+  },
+  {
+    "index": 934,
+    "translated": "Cấu hình SIP-Based CAC (CLI)\nThủ tục\nBước 1 Đặt thoại (voice) thành mức QoS platinum\nBước 2 Bật tính năng call-snooping cho một WLAN cụ thể\n…"
+  },
+  {
+    "index": 935,
+    "translated": "Reference: https://www.cisco.com/c/en/us/td/docs/wireless/controller/8-10/config-guide/b_cg810/wireless_quality_of_service.html"
+  }
+]
